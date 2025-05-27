@@ -10,6 +10,7 @@ import JackpotDisplay from '../components/JackpotDisplay';
 import BettingInterface from '../components/BettingInterface';
 import RecentWinners from '../components/RecentWinners';
 import Header from '../components/Header';
+import WheelManager from '../components/WheelManager';
 
 export default function Home() {
   const { publicKey, connected } = useWallet();
@@ -84,6 +85,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      
+      {/* Spinning Wheel Overlay */}
+      <WheelManager />
     </div>
   );
 } 

@@ -17,10 +17,10 @@ export const useSocket = () => {
   } = useJackpotStore();
 
   useEffect(() => {
-    // Initialize socket connection
-    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
+    // Initialize socket connection - use same URL as app when no separate socket URL provided
+    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
     socketRef.current = io(socketUrl, {
-      transports: ['websocket'],
+      transports: ['websocket', 'polling'],
       autoConnect: true,
     });
 

@@ -4,9 +4,9 @@
   "description": "A web-based jackpot platform on Solana with 60-second cycles and Phantom wallet integration",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint",
     "server": "node server/index.js"
   },

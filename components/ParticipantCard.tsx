@@ -24,7 +24,7 @@ const ParticipantCard: React.FC<ParticipantCardProps> = ({
   };
 
   // Check if this is a placeholder card
-  const isPlaceholder = entry.isPlaceholder || entry.amount === 0;
+  const isPlaceholder = (entry as any).isPlaceholder === true || (!entry.userAddress || entry.userAddress.startsWith('placeholder'));
 
   return (
     <motion.div

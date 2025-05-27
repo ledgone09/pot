@@ -19,6 +19,8 @@ interface JackpotStore extends JackpotState {
   setPhase: (phase: JackpotState['phase']) => void;
   setUserStats: (stats: UserStats) => void;
   setConnection: (connected: boolean, address?: string) => void;
+  clearUserRoundStats: () => void;
+  clearRoundData: () => void;
   reset: () => void;
 }
 
@@ -64,7 +66,10 @@ export const useJackpotStore = create<JackpotStore>((set, get) => ({
   },
 
   updateTimer: (time: number) => {
-    const phase = time > 5 ? 'active' : time > 0 ? 'countdown' : 'resolution';
+    // Don't change phase if we're in reset mode (showing winner)
+    const currentState = get();
+    const phase = currentState.phase === 'reset' ? 'reset' : 
+                  time > 5 ? 'active' : time > 0 ? 'countdown' : 'resolution';
     set({ timeRemaining: time, phase });
   },
 
@@ -173,13 +178,15 @@ export const useJackpotStore = create<JackpotStore>((set, get) => ({
   startNewRound: (round: number) => {
     set((state) => ({
       currentRound: round,
-      entries: [],
-      totalPool: 0,
+      // Don't clear entries and pool immediately if we're in resolution phase
+      entries: state.phase === 'resolution' || state.phase === 'reset' ? state.entries : [],
+      totalPool: state.phase === 'resolution' || state.phase === 'reset' ? state.totalPool : 0,
       roundStartTime: Date.now(),
       timeRemaining: state.config.roundDuration,
       isActive: true,
       phase: 'active',
-      userStats: {
+      // Only clear user stats if we're not in resolution phase
+      userStats: state.phase === 'resolution' || state.phase === 'reset' ? state.userStats : {
         ...state.userStats,
         currentRoundEntries: [],
       },
@@ -220,6 +227,26 @@ export const useJackpotStore = create<JackpotStore>((set, get) => ({
   },
 
   clearEntries: () => {
+    set((state) => ({
+      entries: [],
+      totalPool: 0,
+      userStats: {
+        ...state.userStats,
+        currentRoundEntries: [],
+      },
+    }));
+  },
+
+  clearUserRoundStats: () => {
+    set((state) => ({
+      userStats: {
+        ...state.userStats,
+        currentRoundEntries: [],
+      },
+    }));
+  },
+
+  clearRoundData: () => {
     set((state) => ({
       entries: [],
       totalPool: 0,

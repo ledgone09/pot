@@ -116,7 +116,7 @@ const ModernJackpotDisplay: React.FC = () => {
           timeRemaining={timeRemaining}
         />
 
-        {/* Winner Announcement */}
+        {/* Winner Announcement - Show during reset phase */}
         {lastWinner && phase === 'reset' && (
           <motion.div
             className="mt-6 text-center bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-lg p-6 border border-yellow-500/30"
@@ -126,34 +126,42 @@ const ModernJackpotDisplay: React.FC = () => {
           >
             <div className="flex items-center justify-center space-x-2 mb-3">
               <Trophy className="w-6 h-6 text-yellow-400" />
-              <h3 className="text-xl font-bold text-yellow-400">Winner Takes All!</h3>
+              <h3 className="text-xl font-bold text-yellow-400">🎉 Winner Selected! 🎉</h3>
               <Trophy className="w-6 h-6 text-yellow-400" />
             </div>
             
             <p className="text-lg text-white mb-2">
-              🎉 <strong>{lastWinner.address.slice(0, 8)}...</strong> wins the jackpot!
+              <strong>{lastWinner.address.slice(0, 8)}...</strong> wins the jackpot!
             </p>
             
-            <div className="text-2xl font-bold text-yellow-300 mb-2">
+            <div className="text-3xl font-bold text-yellow-300 mb-2">
               {lastWinner.amount.toFixed(4)} SOL
             </div>
             
-            <p className="text-sm text-gray-300">
+            <p className="text-sm text-gray-300 mb-3">
               From a total pool of {entries.reduce((sum, entry) => sum + entry.amount, 0).toFixed(4)} SOL
             </p>
+            
+            <div className="text-xs text-gray-400">
+              🎲 Next round starting soon...
+            </div>
           </motion.div>
         )}
 
 
         
+        {/* Resolution Phase - Selecting Winner */}
         {phase === 'resolution' && (
           <motion.div
             className="mt-6 text-center bg-purple-500/20 border border-purple-500/30 rounded-lg p-4"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1, repeat: Infinity }}
           >
-            <p className="text-purple-400 font-semibold">
-              🎲 Selecting Winner...
+            <p className="text-purple-400 font-semibold text-lg">
+              🎯 Selecting Winner...
+            </p>
+            <p className="text-purple-300 text-sm mt-1">
+              Cards are spinning to determine the winner!
             </p>
           </motion.div>
         )}

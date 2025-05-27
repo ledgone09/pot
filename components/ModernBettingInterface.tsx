@@ -25,7 +25,7 @@ const ModernBettingInterface: React.FC = () => {
   const [isPlacingBet, setIsPlacingBet] = useState(false);
   const [estimatedFee, setEstimatedFee] = useState(0.000005);
 
-  const quickAmounts = [0.1, 1, 10];
+  const quickAmounts = [0.01, 0.1, 1];
 
   // Update user balance periodically
   useEffect(() => {
@@ -175,17 +175,24 @@ const ModernBettingInterface: React.FC = () => {
         </div>
 
         {/* Quick Amount Buttons */}
-        <div className="flex space-x-2 mt-3">
+        <div className="grid grid-cols-3 gap-2 mt-3">
+          <button
+            onClick={() => setBetAmount(0.01)}
+            className="bg-gray-700/50 hover:bg-gray-600/50 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+            disabled={isPlacingBet}
+          >
+            +0.01
+          </button>
           <button
             onClick={() => setBetAmount(0.1)}
-            className="flex-1 bg-gray-700/50 hover:bg-gray-600/50 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+            className="bg-gray-700/50 hover:bg-gray-600/50 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
             disabled={isPlacingBet}
           >
             +0.1
           </button>
           <button
             onClick={() => setBetAmount(1)}
-            className="flex-1 bg-gray-700/50 hover:bg-gray-600/50 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+            className="bg-gray-700/50 hover:bg-gray-600/50 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors"
             disabled={isPlacingBet}
           >
             +1

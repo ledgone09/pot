@@ -60,8 +60,12 @@ export const useSocket = () => {
     });
 
     socket.on('clear_entries', () => {
-      // Explicitly clear all entries
-      clearEntries();
+      // Only clear entries if we're not in resolution or reset phase
+      // This allows winner animation to complete
+      const currentPhase = useJackpotStore.getState().phase;
+      if (currentPhase !== 'resolution' && currentPhase !== 'reset') {
+        clearEntries();
+      }
     });
 
     socket.on('phase_change', (phase: 'active' | 'countdown' | 'resolution' | 'reset') => {

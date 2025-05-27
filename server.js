@@ -99,7 +99,15 @@ const endRound = (io) => {
     console.log(`Winner selected: ${winner.address} won ${winner.amount} SOL`);
     io.emit('round_end', winner);
     
-    setTimeout(() => resetRound(io), 5000);
+    // Set phase to 'reset' to indicate winner is being shown
+    setTimeout(() => {
+      jackpotState.phase = 'reset';
+      io.emit('phase_change', jackpotState.phase);
+      console.log('Showing winner animation...');
+    }, 1000);
+    
+    // Wait for animation to complete before starting new round (12 seconds total)
+    setTimeout(() => resetRound(io), 12000);
   } else {
     console.log('No entries, resetting round immediately');
     setTimeout(() => resetRound(io), 2000);

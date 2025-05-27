@@ -9,6 +9,7 @@ const nextConfig = {
     return config;
   },
   // Production optimizations
+  output: 'standalone',
   compress: true,
   poweredByHeader: false,
   // Environment-specific configurations

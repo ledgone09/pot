@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useJackpotStore } from '@/store/jackpotStore';
-import SpinningWheel from './SpinningWheel';
+import SpinningCards from './SpinningCards';
 import { JackpotEntry } from '@/types';
 
 const WheelManager: React.FC = () => {
@@ -59,7 +59,7 @@ const WheelManager: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <motion.div
-            className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 rounded-2xl p-8 max-w-lg w-full mx-4 border border-white/20"
+            className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 rounded-2xl p-8 max-w-4xl w-full mx-4 border border-white/20 max-h-[90vh] overflow-y-auto"
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.8, y: 50 }}
@@ -70,11 +70,11 @@ const WheelManager: React.FC = () => {
                 {isSpinning ? '🎲 Selecting Winner...' : currentWinner ? '🎉 We Have a Winner!' : '⏱️ Round Ending...'}
               </h2>
               <p className="text-gray-300">
-                {isSpinning ? 'The wheel is spinning!' : currentWinner ? 'Congratulations!' : 'Preparing to select winner...'}
+                {isSpinning ? 'Cards are spinning to select a winner!' : currentWinner ? 'Congratulations!' : 'Preparing to select winner...'}
               </p>
             </div>
 
-            <SpinningWheel
+            <SpinningCards
               isSpinning={isSpinning}
               winner={currentWinner}
               onSpinComplete={handleSpinComplete}

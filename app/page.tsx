@@ -6,8 +6,8 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useJackpotStore } from '@/store/jackpotStore';
 import { useSocket } from '@/hooks/useSocket';
 import { getUserBalance } from '@/lib/solana';
-import JackpotDisplay from '../components/JackpotDisplay';
-import BettingInterface from '../components/BettingInterface';
+import ModernJackpotDisplay from '../components/ModernJackpotDisplay';
+import ModernBettingInterface from '../components/ModernBettingInterface';
 import RecentWinners from '../components/RecentWinners';
 import Header from '../components/Header';
 import WheelManager from '../components/WheelManager';
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Jackpot Display */}
           <div className="lg:col-span-2">
-            <JackpotDisplay />
+            <ModernJackpotDisplay />
           </div>
           
           {/* Sidebar */}
@@ -66,7 +66,7 @@ export default function Home() {
             )}
             
             {/* Betting Interface */}
-            <BettingInterface />
+            <ModernBettingInterface />
             
             {/* Recent Winners */}
             <RecentWinners />

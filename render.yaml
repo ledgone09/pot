@@ -1,0 +1,38 @@
+services:
+  # Backend API Server
+  - type: web
+    name: solana-jackpot-api
+    env: node
+    plan: starter
+    buildCommand: npm install --legacy-peer-deps
+    startCommand: npm run server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        fromService:
+          type: web
+          name: solana-jackpot-frontend
+          property: url
+    
+  # Frontend Next.js App
+  - type: web
+    name: solana-jackpot-frontend
+    env: node
+    plan: starter
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SOCKET_URL
+        fromService:
+          type: web
+          name: solana-jackpot-api
+          property: url
+      - key: NEXT_PUBLIC_SOLANA_NETWORK
+        value: mainnet-beta
+      - key: NEXT_PUBLIC_RPC_ENDPOINT
+        value: https://magical-boldest-patina.solana-mainnet.quiknode.pro/a94255dcbb27e52b1d4cca35d10e899b82b6bdba/ 

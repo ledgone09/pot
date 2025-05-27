@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 import { useJackpotStore } from '@/store/jackpotStore';
 import { formatSolAmount } from '@/lib/solana';
 import { Trophy, Users, Clock, Target } from 'lucide-react';
-import ParticipantCard from './ParticipantCard';
+import SpinningCards from './SpinningCards';
 
 const ModernJackpotDisplay: React.FC = () => {
-  const { totalPool, timeRemaining, entries, phase, userStats } = useJackpotStore();
+  const { totalPool, timeRemaining, entries, phase, userStats, lastWinner } = useJackpotStore();
 
   // Calculate user's winning chance
   const userTotalBet = userStats.currentRoundEntries.reduce((sum, entry) => sum + entry.amount, 0);
@@ -109,33 +109,51 @@ const ModernJackpotDisplay: React.FC = () => {
           </div>
         </div>
 
-        {entries.length === 0 ? (
-          <div className="text-center py-12">
-            <Users className="w-16 h-16 mx-auto mb-4 text-gray-500 opacity-50" />
-            <p className="text-gray-400 text-lg mb-2">No participants yet</p>
-            <p className="text-gray-500">Be the first to join this round!</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-h-80 overflow-y-auto">
-            {entries.map((entry, index) => (
-              <ParticipantCard
-                key={entry.id || entry.userAddress}
-                entry={entry}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
+        <SpinningCards
+          isSpinning={phase === 'resolution'}
+          winner={lastWinner ? entries.find(e => e.userAddress === lastWinner.address) : undefined}
+          onSpinComplete={() => {}}
+          timeRemaining={timeRemaining}
+        />
+
+        {/* Winner Announcement */}
+        {lastWinner && phase === 'reset' && (
+          <motion.div
+            className="mt-6 text-center bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-lg p-6 border border-yellow-500/30"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <div className="flex items-center justify-center space-x-2 mb-3">
+              <Trophy className="w-6 h-6 text-yellow-400" />
+              <h3 className="text-xl font-bold text-yellow-400">Winner Takes All!</h3>
+              <Trophy className="w-6 h-6 text-yellow-400" />
+            </div>
+            
+            <p className="text-lg text-white mb-2">
+              🎉 <strong>{lastWinner.address.slice(0, 8)}...</strong> wins the jackpot!
+            </p>
+            
+            <div className="text-2xl font-bold text-yellow-300 mb-2">
+              {lastWinner.amount.toFixed(4)} SOL
+            </div>
+            
+            <p className="text-sm text-gray-300">
+              From a total pool of {entries.reduce((sum, entry) => sum + entry.amount, 0).toFixed(4)} SOL
+            </p>
+          </motion.div>
         )}
 
-        {/* Selection indicator */}
-        {phase === 'countdown' && (
+
+        
+        {phase === 'resolution' && (
           <motion.div
-            className="mt-6 text-center bg-orange-500/20 border border-orange-500/30 rounded-lg p-4"
+            className="mt-6 text-center bg-purple-500/20 border border-purple-500/30 rounded-lg p-4"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1, repeat: Infinity }}
           >
-            <p className="text-orange-400 font-semibold">
-              🎲 Betting closes in {timeRemaining}s - Winner will be selected soon!
+            <p className="text-purple-400 font-semibold">
+              🎲 Selecting Winner...
             </p>
           </motion.div>
         )}

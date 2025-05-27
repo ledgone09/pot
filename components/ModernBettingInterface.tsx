@@ -60,7 +60,7 @@ const ModernBettingInterface: React.FC = () => {
 
   const canPlaceBet = () => {
     if (!connected || !publicKey || !signTransaction) return false;
-    if (phase !== 'active' || timeRemaining <= 5) return false;
+    if (timeRemaining <= 10) return false; // Close betting 10 seconds before end
     if (betAmount <= 0) return false;
     if (betAmount < config.minBet || betAmount > config.maxBet) return false;
     if (betAmount + estimatedFee > userStats.balance) return false;
@@ -165,7 +165,7 @@ const ModernBettingInterface: React.FC = () => {
             step="0.01"
             min="0"
             max={config.maxBet}
-            disabled={isPlacingBet || phase !== 'active' || timeRemaining <= 5}
+            disabled={isPlacingBet || timeRemaining <= 10}
           />
           
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
@@ -212,10 +212,8 @@ const ModernBettingInterface: React.FC = () => {
             <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
             <span>Placing Bet...</span>
           </div>
-        ) : phase !== 'active' ? (
+        ) : timeRemaining <= 10 ? (
           'Betting Closed'
-        ) : timeRemaining <= 5 ? (
-          'Round Ending...'
         ) : betAmount <= 0 ? (
           'Enter Amount'
         ) : betAmount < config.minBet ? (
@@ -252,16 +250,16 @@ const ModernBettingInterface: React.FC = () => {
       )}
 
       {/* Phase Warning */}
-      {phase === 'countdown' && (
+      {timeRemaining <= 10 && timeRemaining > 0 && (
         <motion.div
-          className="mt-4 p-3 bg-orange-500/20 border border-orange-500/30 rounded-lg"
+          className="mt-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg"
           animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 1, repeat: Infinity }}
+          transition={{ duration: 0.5, repeat: Infinity }}
         >
           <div className="flex items-center space-x-2">
-            <AlertCircle className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium">
-              Betting closes in {timeRemaining}s!
+            <AlertCircle className="w-4 h-4 text-red-400" />
+            <span className="text-red-400 text-sm font-medium">
+              🚫 Betting closed! Selection in {timeRemaining}s
             </span>
           </div>
         </motion.div>

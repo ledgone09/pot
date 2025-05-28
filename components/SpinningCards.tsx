@@ -20,7 +20,7 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
   onSpinComplete,
   timeRemaining = 0
 }) => {
-  const { entries, phase } = useJackpotStore();
+  const { entries, phase, totalPool: storePool } = useJackpotStore();
   const [isMounted, setIsMounted] = useState(false);
   const [selectedWinner, setSelectedWinner] = useState<JackpotEntry | null>(null);
   const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
@@ -184,7 +184,6 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
   const displayCards = stableCards.current.length > 0 ? stableCards.current : createStableCards();
   
   // Calculate total pool for odds - use store value for consistency
-  const { totalPool: storePool } = useJackpotStore();
   const totalPool = storePool || entries.reduce((sum, entry) => sum + entry.amount, 0);
 
   // Determine animation phase

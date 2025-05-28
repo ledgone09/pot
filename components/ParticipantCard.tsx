@@ -38,13 +38,6 @@ const ParticipantCard: React.FC<ParticipantCardProps> = ({
   };
 
   const oddsPercentage = calculateOdds();
-  
-  // Debug log to check if totalPool is updating
-  React.useEffect(() => {
-    if (!isPlaceholder && entry.userAddress) {
-      console.log(`Card ${entry.userAddress.slice(0, 8)}: amount=${entry.amount}, totalPool=${totalPool}, odds=${oddsPercentage.toFixed(1)}%`);
-    }
-  }, [totalPool, entry.amount, oddsPercentage, isPlaceholder, entry.userAddress]);
 
   // Get display name (username or shortened address)
   const getDisplayName = () => {

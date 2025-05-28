@@ -189,6 +189,7 @@ app.prepare().then(() => {
     socket.emit('timer_update', jackpotState.timeRemaining);
     socket.emit('phase_change', jackpotState.phase);
     
+    // Send existing entries with profile data
     jackpotState.entries.forEach(entry => {
       socket.emit('new_entry', entry);
     });

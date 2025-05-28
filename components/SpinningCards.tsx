@@ -183,8 +183,9 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
   const hasRealEntries = entries.length > 0;
   const displayCards = stableCards.current.length > 0 ? stableCards.current : createStableCards();
   
-  // Calculate total pool for odds
-  const totalPool = entries.reduce((sum, entry) => sum + entry.amount, 0);
+  // Calculate total pool for odds - use store value for consistency
+  const { totalPool: storePool } = useJackpotStore();
+  const totalPool = storePool || entries.reduce((sum, entry) => sum + entry.amount, 0);
 
   // Determine animation phase
   const getAnimationPhase = () => {

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useJackpotStore } from '@/store/jackpotStore';
+import { useUserProfileStore } from '@/store/userProfileStore';
 import { JackpotEntry } from '@/types';
 import { 
   createBetTransaction, 
@@ -20,6 +21,7 @@ import toast from 'react-hot-toast';
 const ModernBettingInterface: React.FC = () => {
   const { publicKey, signTransaction, connected } = useWallet();
   const { userStats, config, phase, timeRemaining, isConnected, setUserStats } = useJackpotStore();
+  const { getUserProfile } = useUserProfileStore();
   const { emitBet } = useSocket();
   const [betAmount, setBetAmount] = useState(0);
   const [isPlacingBet, setIsPlacingBet] = useState(false);
@@ -92,6 +94,9 @@ const ModernBettingInterface: React.FC = () => {
       // Send transaction
       const signature = await sendAndConfirmTransaction(signedTx);
       
+      // Get user profile data
+      const userProfile = getUserProfile(publicKey.toString());
+      
       // Emit bet to server
       const betEntry: JackpotEntry = {
         id: signature,
@@ -100,6 +105,7 @@ const ModernBettingInterface: React.FC = () => {
         amount: betAmount,
         timestamp: Date.now(),
         weight: betAmount,
+        userProfile: userProfile || undefined,
       };
 
       emitBet(betEntry);

@@ -25,8 +25,8 @@ const ParticipantCard: React.FC<ParticipantCardProps> = ({
 }) => {
   const { getUserProfile } = useUserProfileStore();
 
-  // Get user profile for this entry
-  const userProfile = entry.userAddress ? getUserProfile(entry.userAddress) : null;
+  // Get user profile for this entry - prefer embedded profile data, fallback to local lookup
+  const userProfile = entry.userProfile || (entry.userAddress ? getUserProfile(entry.userAddress) : null);
 
   // Check if this is a placeholder card
   const isPlaceholder = (entry as any).isPlaceholder === true || (!entry.userAddress || entry.userAddress.startsWith('placeholder'));

@@ -246,9 +246,13 @@ app.prepare().then(() => {
           return;
         }
         
+        // Update existing entry with new amount and preserve/update profile data
         existingEntry.amount = newTotalAmount;
         existingEntry.weight = newTotalAmount * 100;
         existingEntry.timestamp = Date.now();
+        if (entry.userProfile) {
+          existingEntry.userProfile = entry.userProfile;
+        }
         
         console.log(`Bet combined: ${entry.userAddress} total now ${newTotalAmount} SOL`);
         io.emit('update_entry', existingEntry);
@@ -257,7 +261,8 @@ app.prepare().then(() => {
           ...entry,
           id: entry.id || `${Date.now()}-${Math.random()}`,
           timestamp: Date.now(),
-          weight: entry.amount * 100
+          weight: entry.amount * 100,
+          userProfile: entry.userProfile || undefined
         };
         
         jackpotState.entries.push(newEntry);

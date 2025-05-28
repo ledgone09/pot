@@ -1,7 +1,8 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useJackpotStore } from '@/store/jackpotStore';
-import { JackpotEntry, WinnerData } from '@/types';
+import { useChatStore } from '@/store/chatStore';
+import { JackpotEntry, WinnerData, ChatMessage } from '@/types';
 
 export const useSocket = () => {
   const socketRef = useRef<Socket | null>(null);
@@ -16,6 +17,13 @@ export const useSocket = () => {
     setPhase,
   } = useJackpotStore();
 
+  const {
+    addMessage,
+    userJoined,
+    userLeft,
+    setConnected,
+  } = useChatStore();
+
   useEffect(() => {
     // Initialize socket connection - use same URL as app when no separate socket URL provided
     const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
@@ -29,10 +37,12 @@ export const useSocket = () => {
     // Socket event listeners
     socket.on('connect', () => {
       console.log('Connected to jackpot server');
+      setConnected(true);
     });
 
     socket.on('disconnect', () => {
       console.log('Disconnected from jackpot server');
+      setConnected(false);
     });
 
     socket.on('pool_update', (pool: number) => {
@@ -55,6 +65,14 @@ export const useSocket = () => {
       setWinner(winner);
     });
 
+    socket.on('recent_winners', (winners: WinnerData[]) => {
+      // Set initial recent winners without triggering winner animation
+      useJackpotStore.setState((state) => ({
+        ...state,
+        recentWinners: winners.slice(0, 5)
+      }));
+    });
+
     socket.on('round_start', (round: number) => {
       startNewRound(round);
     });
@@ -70,6 +88,19 @@ export const useSocket = () => {
 
     socket.on('phase_change', (phase: 'active' | 'countdown' | 'resolution' | 'reset') => {
       setPhase(phase);
+    });
+
+    // Chat event listeners
+    socket.on('chat_message', (message: ChatMessage) => {
+      addMessage(message);
+    });
+
+    socket.on('user_joined', (userAddress: string) => {
+      userJoined(userAddress);
+    });
+
+    socket.on('user_left', (userAddress: string) => {
+      userLeft(userAddress);
     });
 
     socket.on('error', (error: any) => {
@@ -103,11 +134,18 @@ export const useSocket = () => {
     }
   }, []);
 
+  const emitChatMessage = useCallback((message: ChatMessage) => {
+    if (socketRef.current) {
+      socketRef.current.emit('send_message', message);
+    }
+  }, []);
+
   return {
     socket: socketRef.current,
     emitBet,
     emitJoinRoom,
     emitLeaveRoom,
+    emitChatMessage,
     isConnected: socketRef.current?.connected || false,
   };
 }; 

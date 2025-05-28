@@ -182,6 +182,9 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
 
   const hasRealEntries = entries.length > 0;
   const displayCards = stableCards.current.length > 0 ? stableCards.current : createStableCards();
+  
+  // Calculate total pool for odds
+  const totalPool = entries.reduce((sum, entry) => sum + entry.amount, 0);
 
   // Determine animation phase
   const getAnimationPhase = () => {
@@ -246,6 +249,7 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
         
         {/* Ultra-Smooth One-Direction Lottery Wheel */}
         <motion.div
+          key="spinning-cards" // Stable key to prevent restarts
           className="flex space-x-6 absolute inset-0 items-center"
           style={{
             width: `${(displayCards.length * 6) * 200}px`, // 6x cards to ensure complete coverage
@@ -257,49 +261,46 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
           animate={{ 
             x: animationPhase === 'stopping' || animationPhase === 'winner'
               ? finalPosition // Smooth deceleration to exact winner position
-              : [0, -2400] // Continuous one-direction movement - perfectly divisible
+              : [0, -2400] // Continuous one-direction movement - LEFT ONLY
           }}
           transition={{
             duration: animationPhase === 'stopping' ? 12 : // 12 seconds ultra-smooth deceleration
                      animationPhase === 'winner' ? 0 : // Instant stop
-                     animationPhase === 'fast' ? 0.5 : // Ultra-smooth fast spinning (perfectly divisible)
-                     12, // Ultra-smooth normal spinning (perfectly divisible)
+                     animationPhase === 'fast' ? 0.5 : // Ultra-smooth fast spinning
+                     12, // Ultra-smooth normal spinning
             ease: animationPhase === 'stopping' ? [0.19, 1, 0.22, 1] : "linear", // Perfect easeOutExpo
             repeat: animationPhase === 'stopping' || animationPhase === 'winner' ? 0 : Infinity,
-            repeatType: "loop", // Ensures smooth looping without direction change
+            repeatType: "loop", // Ensures smooth looping - NEVER changes direction
             type: "tween", // Force tween animation for smoothness
+            repeatDelay: 0, // No delay between loops
           }}
         >
           {/* 6x cards for complete seamless coverage */}
           {[...displayCards, ...displayCards, ...displayCards, ...displayCards, ...displayCards, ...displayCards].map((entry, index) => {
             const originalIndex = index % displayCards.length;
+            const loopIndex = Math.floor(index / displayCards.length);
             // Only highlight winner when animation has completely stopped
             const isWinnerCard = winnerIndex === originalIndex && !!selectedWinner && animationPhase === 'winner';
-            const cardKey = `card-${originalIndex}-${Math.floor(index / displayCards.length)}`;
+            // Stable key that doesn't change during animation
+            const cardKey = `stable-card-${originalIndex}-loop-${loopIndex}`;
             
             return (
               <div
                 key={cardKey}
-                className={`flex-shrink-0 w-44 relative transition-all duration-500 ${
-                  isWinnerCard ? 'scale-110 z-20' : 'scale-100'
-                }`}
+                className="flex-shrink-0 w-44 relative"
                 style={{
-                  filter: isWinnerCard ? 'drop-shadow(0 8px 16px rgba(34, 197, 94, 0.6))' : 'none',
-                  willChange: 'transform, filter', // Optimize for smooth transitions
+                  willChange: 'transform', // Optimize for smooth transitions
                   transform: 'translate3d(0, 0, 0)', // Hardware acceleration
                   backfaceVisibility: 'hidden', // Prevent flickering
                 }}
               >
-                {/* Winner highlight - only when completely stopped */}
-                {isWinnerCard && (
-                  <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400 via-green-400 to-yellow-400 rounded-xl opacity-75 animate-pulse"></div>
-                )}
-                
                 <ParticipantCard
                   entry={entry}
                   isWinner={isWinnerCard}
                   isSpinning={false}
                   delay={0}
+                  totalPool={totalPool}
+                  allEntries={entries}
                 />
               </div>
             );
@@ -333,7 +334,6 @@ const SpinningCards: React.FC<SpinningCardsProps> = ({
           {(() => {
             const winnerAddress = selectedWinner.userAddress || 'Unknown';
             const winnerAmount = selectedWinner.amount || 0;
-            const totalPool = entries.reduce((sum, entry) => sum + entry.amount, 0);
             const actualWinAmount = totalPool * 0.9;
             
             return (

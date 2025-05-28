@@ -1,5 +1,13 @@
 import { PublicKey } from '@solana/web3.js';
 
+export interface UserProfile {
+  walletAddress: string;
+  username: string;
+  profilePicture?: string; // URL to profile picture, fallback to placeholder.png
+  createdAt: number;
+  updatedAt: number;
+}
+
 export interface JackpotEntry {
   id: string;
   user: PublicKey;
@@ -7,6 +15,7 @@ export interface JackpotEntry {
   timestamp: number;
   userAddress: string;
   weight: number;
+  userProfile?: UserProfile; // Optional user profile data
 }
 
 export interface JackpotState {
@@ -43,6 +52,16 @@ export interface WinnerData {
   signature?: string;
 }
 
+export interface ChatMessage {
+  id: string;
+  userAddress: string;
+  username: string;
+  profilePicture?: string;
+  message: string;
+  timestamp: number;
+  type: 'user' | 'system' | 'winner';
+}
+
 export interface SocketEvents {
   'pool_update': (pool: number) => void;
   'timer_update': (time: number) => void;
@@ -50,6 +69,9 @@ export interface SocketEvents {
   'round_end': (winner: WinnerData) => void;
   'round_start': (round: number) => void;
   'phase_change': (phase: JackpotState['phase']) => void;
+  'chat_message': (message: ChatMessage) => void;
+  'user_joined': (userAddress: string) => void;
+  'user_left': (userAddress: string) => void;
 }
 
 export interface BetTransaction {

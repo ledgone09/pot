@@ -8,11 +8,18 @@ import { Trophy, Users, Clock, Target } from 'lucide-react';
 import SpinningCards from './SpinningCards';
 
 const ModernJackpotDisplay: React.FC = () => {
-  const { totalPool, timeRemaining, entries, phase, userStats, lastWinner } = useJackpotStore();
+  const { totalPool, timeRemaining, entries, phase, userStats, lastWinner, userAddress } = useJackpotStore();
 
-  // Calculate user's winning chance
-  const userTotalBet = userStats.currentRoundEntries.reduce((sum, entry) => sum + entry.amount, 0);
-  const winChance = totalPool > 0 ? ((userTotalBet / totalPool) * 100) : 0;
+  // Calculate user's winning chance - more stable calculation
+  const getUserTotalBet = () => {
+    if (!userAddress) return 0;
+    return entries
+      .filter(entry => entry.userAddress === userAddress)
+      .reduce((sum, entry) => sum + entry.amount, 0);
+  };
+
+  const userTotalBet = getUserTotalBet();
+  const winChance = totalPool > 0 && userTotalBet > 0 ? ((userTotalBet / totalPool) * 100) : 0;
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -26,19 +33,19 @@ const ModernJackpotDisplay: React.FC = () => {
       <div className="bg-gradient-to-br from-gray-900/80 to-black/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
-            <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-xl">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-3 rounded-xl">
               <Trophy className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">JACKPOT</h1>
+              <h1 className="text-2xl font-bold text-white">FUNPOT</h1>
               <p className="text-sm text-gray-400">Winner takes all...</p>
             </div>
           </div>
           
           {/* Live indicator */}
-          <div className="flex items-center space-x-2 bg-red-500/20 px-3 py-1 rounded-full border border-red-500/30">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-red-400 text-sm font-semibold">LIVE</span>
+          <div className="flex items-center space-x-2 bg-green-500/20 px-3 py-1 rounded-full border border-green-500/30">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-green-400 text-sm font-semibold">LIVE</span>
           </div>
         </div>
 
@@ -46,24 +53,24 @@ const ModernJackpotDisplay: React.FC = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Jackpot Value */}
           <motion.div
-            className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-xl p-4 border border-purple-500/20"
+            className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-4 border border-green-500/20"
             whileHover={{ scale: 1.02 }}
           >
             <div className="flex items-center space-x-2 mb-2">
-              <Trophy className="w-4 h-4 text-purple-400" />
-              <span className="text-lg font-bold text-purple-300">{formatSolAmount(totalPool)}</span>
+              <Trophy className="w-4 h-4 text-green-400" />
+              <span className="text-lg font-bold text-green-300">{formatSolAmount(totalPool)}</span>
             </div>
-            <p className="text-sm text-gray-400">Jackpot Value</p>
+            <p className="text-sm text-gray-400">Funpot Value</p>
           </motion.div>
 
           {/* Your Wager */}
           <motion.div
-            className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl p-4 border border-blue-500/20"
+            className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl p-4 border border-green-500/20"
             whileHover={{ scale: 1.02 }}
           >
             <div className="flex items-center space-x-2 mb-2">
-              <Target className="w-4 h-4 text-blue-400" />
-              <span className="text-lg font-bold text-blue-300">{formatSolAmount(userTotalBet)}</span>
+              <Target className="w-4 h-4 text-green-400" />
+              <span className="text-lg font-bold text-green-300">{formatSolAmount(userTotalBet)}</span>
             </div>
             <p className="text-sm text-gray-400">Your Wager</p>
           </motion.div>
@@ -104,8 +111,8 @@ const ModernJackpotDisplay: React.FC = () => {
       <div className="bg-gradient-to-br from-gray-900/80 to-black/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-white">Participants</h2>
-          <div className="bg-blue-500/20 px-3 py-1 rounded-full border border-blue-500/30">
-            <span className="text-blue-400 text-sm font-semibold">{entries.length} Players</span>
+          <div className="bg-green-500/20 px-3 py-1 rounded-full border border-green-500/30">
+            <span className="text-green-400 text-sm font-semibold">{entries.length} Players</span>
           </div>
         </div>
 
@@ -116,51 +123,21 @@ const ModernJackpotDisplay: React.FC = () => {
           timeRemaining={timeRemaining}
         />
 
-        {/* Winner Announcement - Show during reset phase */}
-        {lastWinner && phase === 'reset' && (
-          <motion.div
-            className="mt-6 text-center bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-lg p-6 border border-yellow-500/30"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <div className="flex items-center justify-center space-x-2 mb-3">
-              <Trophy className="w-6 h-6 text-yellow-400" />
-              <h3 className="text-xl font-bold text-yellow-400">🎉 Winner Selected! 🎉</h3>
-              <Trophy className="w-6 h-6 text-yellow-400" />
-            </div>
-            
-            <p className="text-lg text-white mb-2">
-              <strong>{lastWinner.address.slice(0, 8)}...</strong> wins the jackpot!
-            </p>
-            
-            <div className="text-3xl font-bold text-yellow-300 mb-2">
-              {lastWinner.amount.toFixed(4)} SOL
-            </div>
-            
-            <p className="text-sm text-gray-300 mb-3">
-              From a total pool of {entries.reduce((sum, entry) => sum + entry.amount, 0).toFixed(4)} SOL
-            </p>
-            
-            <div className="text-xs text-gray-400">
-              🎲 Next round starting soon...
-            </div>
-          </motion.div>
-        )}
+
 
 
         
         {/* Resolution Phase - Selecting Winner */}
         {phase === 'resolution' && (
           <motion.div
-            className="mt-6 text-center bg-purple-500/20 border border-purple-500/30 rounded-lg p-4"
+            className="mt-6 text-center bg-green-500/20 border border-green-500/30 rounded-lg p-4"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1, repeat: Infinity }}
           >
-            <p className="text-purple-400 font-semibold text-lg">
+            <p className="text-green-400 font-semibold text-lg">
               🎯 Selecting Winner...
             </p>
-            <p className="text-purple-300 text-sm mt-1">
+            <p className="text-green-300 text-sm mt-1">
               Cards are spinning to determine the winner!
             </p>
           </motion.div>

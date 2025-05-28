@@ -74,7 +74,7 @@ const JackpotDisplay: React.FC = () => {
             <div className="mb-6">
               <div className="flex items-center justify-center mb-2">
                 <Trophy className="w-8 h-8 text-accent-500 mr-2" />
-                <span className="text-lg font-semibold text-gray-300">JACKPOT</span>
+                <span className="text-lg font-semibold text-gray-300">FUNPOT</span>
               </div>
               
               <motion.div

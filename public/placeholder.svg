@@ -1,0 +1,6 @@
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="150" height="150" fill="#374151"/>
+  <circle cx="75" cy="60" r="25" fill="#9CA3AF"/>
+  <path d="M30 130 C30 110, 50 95, 75 95 C100 95, 120 110, 120 130" fill="#9CA3AF"/>
+  <text x="75" y="140" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">User</text>
+</svg> 

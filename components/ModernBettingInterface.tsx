@@ -161,7 +161,7 @@ const ModernBettingInterface: React.FC = () => {
             value={betAmount || ''}
             onChange={(e) => handleBetAmountChange(e.target.value)}
             placeholder="0"
-            className="w-full bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white text-lg font-semibold placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white text-lg font-semibold placeholder-gray-500 focus:outline-none focus:border-green-500 transition-colors"
             step="0.01"
             min="0"
             max={config.maxBet}
@@ -169,7 +169,7 @@ const ModernBettingInterface: React.FC = () => {
           />
           
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-            <span className="text-blue-400 text-sm">≈</span>
+            <span className="text-green-400 text-sm">≈</span>
             <span className="text-gray-400 text-sm">0</span>
           </div>
         </div>
@@ -207,7 +207,7 @@ const ModernBettingInterface: React.FC = () => {
         className={`
           w-full py-4 rounded-xl font-bold text-lg transition-all duration-300
           ${canPlaceBet() 
-            ? 'bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg' 
+            ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg' 
             : 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
           }
         `}
@@ -237,7 +237,7 @@ const ModernBettingInterface: React.FC = () => {
       {/* Betting Info */}
       {betAmount > 0 && (
         <motion.div
-          className="mt-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg"
+          className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -249,7 +249,7 @@ const ModernBettingInterface: React.FC = () => {
             <span className="text-gray-400">Network Fee:</span>
             <span className="text-gray-300">~{formatSolAmount(estimatedFee)} SOL</span>
           </div>
-          <div className="flex justify-between text-sm mt-1 pt-1 border-t border-blue-500/20">
+          <div className="flex justify-between text-sm mt-1 pt-1 border-t border-green-500/20">
             <span className="text-gray-400">Total:</span>
             <span className="text-white font-semibold">{formatSolAmount(betAmount + estimatedFee)} SOL</span>
           </div>

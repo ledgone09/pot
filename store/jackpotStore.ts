@@ -170,7 +170,7 @@ export const useJackpotStore = create<JackpotStore>((set, get) => ({
   setWinner: (winner: WinnerData) => {
     set((state) => ({
       lastWinner: winner,
-      recentWinners: [winner, ...state.recentWinners.slice(0, 9)], // Keep last 10 winners
+      recentWinners: [winner, ...state.recentWinners.slice(0, 4)], // Keep last 5 winners
       phase: 'reset',
     }));
   },

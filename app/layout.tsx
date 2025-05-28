@@ -6,8 +6,8 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Solana Jackpot Platform',
-  description: 'A web-based jackpot platform on Solana with 60-second cycles',
+  title: 'Funpot Platform',
+  description: 'A web-based funpot platform on Solana with 60-second cycles',
 };
 
 export default function RootLayout({

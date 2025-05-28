@@ -10,11 +10,11 @@ const port = process.env.PORT || 3000;
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
-// Import jackpot logic from server directory
+// Import funpot logic from server directory
 const express = require('express');
 const cors = require('cors');
 
-// Jackpot state
+// Funpot state
 let jackpotState = {
   currentRound: 1,
   totalPool: 0,
@@ -29,6 +29,8 @@ let jackpotState = {
 };
 
 const connectedUsers = new Map();
+const chatMessages = [];
+const onlineUsers = new Set();
 
 // Utility functions
 const calculateWinner = (entries) => {
@@ -92,7 +94,7 @@ const endRound = (io) => {
     };
     
     jackpotState.recentWinners.unshift(winner);
-    if (jackpotState.recentWinners.length > 10) {
+    if (jackpotState.recentWinners.length > 5) {
       jackpotState.recentWinners.pop();
     }
     
@@ -191,9 +193,8 @@ app.prepare().then(() => {
       socket.emit('new_entry', entry);
     });
     
-    jackpotState.recentWinners.forEach(winner => {
-      socket.emit('round_end', winner);
-    });
+    // Send recent winners as initial data, not as new round_end events
+    socket.emit('recent_winners', jackpotState.recentWinners.slice(0, 5));
     
     socket.on('join_room', (userAddress) => {
       const existingUser = connectedUsers.get(socket.id);
@@ -203,11 +204,18 @@ app.prepare().then(() => {
       }
       
       connectedUsers.set(socket.id, userAddress);
+      onlineUsers.add(userAddress);
       console.log(`User ${userAddress} joined room`);
+      
+      // Send recent chat messages to new user
+      chatMessages.slice(-50).forEach(message => {
+        socket.emit('chat_message', message);
+      });
     });
     
     socket.on('leave_room', (userAddress) => {
       connectedUsers.delete(socket.id);
+      onlineUsers.delete(userAddress);
       console.log(`User ${userAddress} left room`);
     });
     
@@ -265,10 +273,54 @@ app.prepare().then(() => {
       io.emit('pool_update', jackpotState.totalPool);
     });
     
+    // Chat message handling
+    socket.on('send_message', (message) => {
+      // Validate message
+      if (!message.userAddress || !message.message || !message.username) {
+        socket.emit('error', 'Invalid message format');
+        return;
+      }
+      
+      // Check if user is connected
+      if (!onlineUsers.has(message.userAddress)) {
+        socket.emit('error', 'User not connected');
+        return;
+      }
+      
+      // Check for duplicate messages (prevent spam)
+      const messageKey = `${message.userAddress}-${message.message.trim()}`;
+      const now = Date.now();
+      if (socket.lastMessageKey === messageKey && (now - socket.lastMessageTime) < 1000) {
+        console.log('Duplicate message prevented');
+        return;
+      }
+      socket.lastMessageKey = messageKey;
+      socket.lastMessageTime = now;
+      
+      // Sanitize message
+      const sanitizedMessage = {
+        ...message,
+        message: message.message.trim().substring(0, 200), // Limit message length
+        timestamp: now,
+        id: `${message.userAddress}-${now}-${Math.random()}`
+      };
+      
+      // Store message (keep last 100 messages)
+      chatMessages.push(sanitizedMessage);
+      if (chatMessages.length > 100) {
+        chatMessages.shift();
+      }
+      
+      // Broadcast to all users
+      io.emit('chat_message', sanitizedMessage);
+      console.log(`Chat message from ${message.username}: ${sanitizedMessage.message}`);
+    });
+    
     socket.on('disconnect', () => {
       const userAddress = connectedUsers.get(socket.id);
       if (userAddress) {
         connectedUsers.delete(socket.id);
+        onlineUsers.delete(userAddress);
         console.log(`User ${userAddress} disconnected`);
       }
     });
@@ -277,6 +329,6 @@ app.prepare().then(() => {
   server.listen(port, (err) => {
     if (err) throw err;
     console.log(`> Ready on http://${hostname}:${port}`);
-    console.log(`> Jackpot server integrated - Round ${jackpotState.currentRound} started`);
+    console.log(`> Funpot server integrated - Round ${jackpotState.currentRound} started`);
   });
 }); 

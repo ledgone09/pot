@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { JackpotEntry } from '@/types';
 import { formatSolAmount, shortenAddress } from '@/lib/solana';
 import { useJackpotStore } from '@/store/jackpotStore';
+import { useUserProfileStore } from '@/store/userProfileStore';
 import { Users, Star } from 'lucide-react';
 
 interface ParticipantsListProps {
@@ -13,24 +14,35 @@ interface ParticipantsListProps {
 
 const ParticipantsList: React.FC<ParticipantsListProps> = ({ entries }) => {
   const { userAddress } = useJackpotStore();
+  const { getUserProfile } = useUserProfileStore();
 
   const sortedEntries = [...entries].sort((a, b) => b.amount - a.amount);
   const totalPool = entries.reduce((sum, entry) => sum + entry.amount, 0);
 
   const getWinChance = (amount: number) => {
-    if (totalPool === 0) return 0;
-    return (amount / totalPool) * 100;
+    if (totalPool === 0 || amount === 0) return 0;
+    return Math.max(0, (amount / totalPool) * 100);
   };
 
   const isUserEntry = (entry: JackpotEntry) => {
     return userAddress && entry.userAddress === userAddress;
   };
 
+  const getDisplayName = (address: string) => {
+    const profile = getUserProfile(address);
+    return profile?.username || shortenAddress(address);
+  };
+
+  const getProfilePicture = (address: string) => {
+    const profile = getUserProfile(address);
+    return profile?.profilePicture || '/placeholder.svg';
+  };
+
   return (
     <div className="glass-effect rounded-xl p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-white flex items-center">
-          <Users className="w-5 h-5 mr-2 text-blue-400" />
+          <Users className="w-5 h-5 mr-2 text-green-400" />
           Participants ({entries.length})
         </h3>
         {totalPool > 0 && (
@@ -58,7 +70,7 @@ const ParticipantsList: React.FC<ParticipantsListProps> = ({ entries }) => {
                 transition={{ delay: index * 0.05 }}
                 className={`bet-entry p-3 rounded-lg border ${
                   isUserEntry(entry)
-                    ? 'bg-primary-900/30 border-primary-500/50'
+                    ? 'bg-green-900/30 border-green-500/50'
                     : 'bg-gray-800/50 border-gray-700'
                 }`}
               >
@@ -70,10 +82,10 @@ const ParticipantsList: React.FC<ParticipantsListProps> = ({ entries }) => {
                     <div>
                       <div className="flex items-center space-x-2">
                         <span className="font-medium text-white">
-                          {shortenAddress(entry.userAddress)}
+                          {getDisplayName(entry.userAddress)}
                         </span>
                         {isUserEntry(entry) && (
-                          <span className="text-xs bg-primary-600 text-white px-2 py-1 rounded">
+                          <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">
                             YOU
                           </span>
                         )}
@@ -99,7 +111,7 @@ const ParticipantsList: React.FC<ParticipantsListProps> = ({ entries }) => {
                   <div className="w-full bg-gray-700 rounded-full h-1">
                     <motion.div
                       className={`h-1 rounded-full ${
-                        isUserEntry(entry) ? 'bg-primary-500' : 'bg-blue-500'
+                        isUserEntry(entry) ? 'bg-green-500' : 'bg-green-500'
                       }`}
                       initial={{ width: 0 }}
                       animate={{ width: `${getWinChance(entry.amount)}%` }}

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Characters - Rainbow Kingdom</title>
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Meta tags -->
+    <meta name="description"
+        content="Meet Tęcza, Lisica Lilly, Lawendowa Wróżka, Gryzi Piórek, and Andrzej Kret - the lovable characters from Rainbow Kingdom!">
+    <meta name="keywords"
+        content="Rainbow Kingdom characters, Tęcza, Lisica Lilly, Lawendowa Wróżka, Gryzi Piórek, Andrzej Kret, kids characters">
+    <meta name="author" content="Rainbow Kingdom Productions">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Characters - Rainbow Kingdom">
+    <meta property="og:description"
+        content="Meet the amazing characters from Rainbow Kingdom and learn about their unique personalities!">
+    <meta property="og:image" content="public/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Characters - Rainbow Kingdom">
+    <meta name="twitter:description"
+        content="Meet the amazing characters from Rainbow Kingdom and learn about their unique personalities!">
+    <meta name="twitter:image" content="public/logo.png">
+
+    <!-- iOS Web App optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Rainbow Kingdom">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#3b82f6">
+
+    <!-- Icons -->
+    <link rel="icon" href="public/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/logo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Critical CSS for faster rendering -->
+    <style>
+        /* Critical CSS for Safari and immediate rendering */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            height: 100%;
+            height: -webkit-fill-available;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            -webkit-overflow-scrolling: touch;
+            background: linear-gradient(135deg, #4065ac 0%, #5a7bc8 25%, #33d6f8 50%, #45e3ff 75%, #4065ac 100%);
+            background-attachment: fixed;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Characters page specific info-box styling */
+        .info-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 1000px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        /* Mobile responsive info-box styling */
+        @media (max-width: 768px) {
+            .info-box {
+                max-width: calc(100vw - 3rem);
+                margin: 1rem 1.5rem;
+                padding: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .info-box {
+                max-width: calc(100vw - 2rem);
+                margin: 1rem 1rem;
+                padding: 1rem;
+            }
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        .info-box h1,
+        .info-box h2 {
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .info-box p,
+        .info-box .section-subtitle {
+            color: #333333;
+            text-shadow: none;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Characters page specific section background opacity */
+        .hero-bg-full,
+        .section-bg {
+            opacity: 0.5 !important;
+        }
+
+        /* Character Detail Cards Styling */
+        .character-detail-card {
+            background: rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Character-themed borders for entire cards */
+        .character-detail-card.rainbow {
+            border: 3px solid #dc3b4d;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 4px #dc3b4d22;
+        }
+
+        .character-detail-card.lily {
+            border: 3px solid #f97316;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 4px #f9731622;
+        }
+
+        .character-detail-card.lavender {
+            border: 3px solid #8b5cf6;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 4px #8b5cf622;
+        }
+
+        .character-detail-card.robin {
+            border: 3px solid #7FE67A;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 4px #7FE67A22;
+        }
+
+        .character-detail-card.andrew {
+            border: 3px solid rgba(81, 18, 128, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(81, 18, 128, 0.133);
+        }
+
+        .character-detail-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        .character-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .character-detail-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .character-detail-frame {
+            width: 320px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            animation: characterFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes characterFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-8px) rotate(1deg) scale(1.02);
+            }
+            50% {
+                transform: translateY(-12px) rotate(0deg) scale(1.05);
+            }
+            75% {
+                transform: translateY(-8px) rotate(-1deg) scale(1.02);
+            }
+        }
+
+        /* Character-specific frame styling with staggered animations */
+        .character-detail-card.rainbow .character-detail-frame {
+            animation-delay: 0s;
+        }
+
+        .character-detail-card.lily .character-detail-frame {
+            animation-delay: 1.2s;
+        }
+
+        .character-detail-card.lavender .character-detail-frame {
+            animation-delay: 2.4s;
+        }
+
+        .character-detail-card.robin .character-detail-frame {
+            animation-delay: 3.6s;
+        }
+
+        .character-detail-card.andrew .character-detail-frame {
+            animation-delay: 4.8s;
+        }
+
+        .character-detail-frame:hover {
+            transform: scale(1.08) translateY(-5px) rotate(2deg);
+            animation-play-state: paused;
+        }
+
+        .character-detail-frame:hover .character-detail-img {
+            transform: scale(1.1);
+            filter: brightness(1.2) saturate(1.3);
+            animation-play-state: paused;
+        }
+
+        .character-detail-img {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+            transition: all 0.4s ease;
+            animation: characterPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes characterPulse {
+            0%, 100% {
+                filter: brightness(1) saturate(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(1.1) saturate(1.2);
+                transform: scale(1.03);
+            }
+        }
+
+        .character-detail-info {
+            color: #333333;
+        }
+
+        .character-detail-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .character-detail-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333333 !important;
+            text-shadow: none;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .character-detail-nickname {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 0.25rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333333;
+            text-shadow: none;
+        }
+
+        .character-detail-quote {
+            background: rgba(0, 0, 0, 0.05);
+            border-left: 4px solid rgba(0, 0, 0, 0.3);
+            border-radius: 0 15px 15px 0;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .character-detail-quote p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333333;
+            text-shadow: none;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .character-detail-quote::before {
+            display: none;
+        }
+
+        .character-detail-description {
+            margin: 2rem 0;
+        }
+
+        .character-detail-description p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555555;
+            text-shadow: none;
+            margin: 0;
+        }
+
+        .character-detail-traits {
+            margin-top: 2rem;
+        }
+
+        .character-detail-traits h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .trait-badge {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 25px;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333333;
+            text-align: center;
+            text-shadow: none;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .trait-badge:hover {
+            background: rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Character-themed name colors */
+        .character-detail-card.rainbow .character-detail-name {
+            color: #dc3b4d !important;
+        }
+
+        .character-detail-card.lily .character-detail-name {
+            color: #f97316 !important;
+        }
+
+        .character-detail-card.lavender .character-detail-name {
+            color: #8b5cf6 !important;
+        }
+
+        .character-detail-card.robin .character-detail-name {
+            color: #7FE67A !important;
+        }
+
+        .character-detail-card.andrew .character-detail-name {
+            color: rgba(81, 18, 128, 1) !important;
+        }
+
+        /* Character-themed quote border colors */
+        .character-detail-card.rainbow .character-detail-quote {
+            border-left: 4px solid #dc3b4d;
+        }
+
+        .character-detail-card.lily .character-detail-quote {
+            border-left: 4px solid #f97316;
+        }
+
+        .character-detail-card.lavender .character-detail-quote {
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .character-detail-card.robin .character-detail-quote {
+            border-left: 4px solid #7FE67A;
+        }
+
+        .character-detail-card.andrew .character-detail-quote {
+            border-left: 4px solid rgba(81, 18, 128, 1);
+        }
+
+        /* Character-themed nickname background colors */
+        .character-detail-card.rainbow .character-detail-nickname {
+            background: rgba(220, 59, 77, 0.1);
+            border: 1px solid rgba(220, 59, 77, 0.3);
+        }
+
+        .character-detail-card.lily .character-detail-nickname {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .character-detail-card.lavender .character-detail-nickname {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .character-detail-card.robin .character-detail-nickname {
+            background: rgba(127, 230, 122, 0.1);
+            border: 1px solid rgba(127, 230, 122, 0.3);
+        }
+
+        .character-detail-card.andrew .character-detail-nickname {
+            background: rgba(81, 18, 128, 0.1);
+            border: 1px solid rgba(81, 18, 128, 0.3);
+        }
+
+        /* Character-themed trait badges */
+        .character-detail-card.rainbow .trait-badge {
+            background: rgba(220, 59, 77, 0.1);
+            border: 1px solid rgba(220, 59, 77, 0.3);
+            color: #dc3b4d;
+        }
+
+        .character-detail-card.lily .trait-badge {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            color: #f97316;
+        }
+
+        .character-detail-card.lavender .trait-badge {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #8b5cf6;
+        }
+
+        .character-detail-card.robin .trait-badge {
+            background: rgba(127, 230, 122, 0.1);
+            border: 1px solid rgba(127, 230, 122, 0.3);
+            color: #7FE67A;
+        }
+
+        .character-detail-card.andrew .trait-badge {
+            background: rgba(81, 18, 128, 0.1);
+            border: 1px solid rgba(81, 18, 128, 0.3);
+            color: rgba(81, 18, 128, 1);
+        }
+
+        /* Character-themed trait badge hover effects */
+        .character-detail-card.rainbow .trait-badge:hover {
+            background: rgba(220, 59, 77, 0.2);
+        }
+
+        .character-detail-card.lily .trait-badge:hover {
+            background: rgba(249, 115, 22, 0.2);
+        }
+
+        .character-detail-card.lavender .trait-badge:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .character-detail-card.robin .trait-badge:hover {
+            background: rgba(127, 230, 122, 0.2);
+        }
+
+        .character-detail-card.andrew .trait-badge:hover {
+            background: rgba(81, 18, 128, 0.2);
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .character-detail-card {
+                padding: 1.5rem;
+                margin: 1rem 1.5rem;
+                max-width: calc(100vw - 3rem);
+            }
+
+            .character-detail-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .character-detail-frame {
+                width: 260px;
+                height: 260px;
+            }
+
+            .character-detail-img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .character-detail-name {
+                font-size: 1.75rem;
+            }
+
+            .character-detail-quote p {
+                font-size: 1rem;
+            }
+
+            .character-detail-description p {
+                font-size: 0.95rem;
+            }
+
+            .traits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .character-detail-card {
+                padding: 1.25rem;
+                margin: 1rem 1rem;
+                max-width: calc(100vw - 2rem);
+            }
+
+            .character-detail-frame {
+                width: 220px;
+                height: 220px;
+            }
+
+            .character-detail-img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .character-detail-name {
+                font-size: 1.5rem;
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Override external CSS for seamless footer blending */
+        .characters-section {
+            margin-bottom: -2rem !important;
+            padding-bottom: 12rem !important;
+            position: relative !important;
+        }
+        
+        /* Reduce bottom padding on mobile */
+        @media (max-width: 768px) {
+            .characters-section {
+                padding-bottom: 4rem !important;
+            }
+        }
+
+        /* Add bottom fade gradient overlay for seamless blending */
+        .characters-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(51, 214, 248, 0) 0%, rgba(51, 214, 248, 0.1) 10%, rgba(51, 214, 248, 0.2) 20%, rgba(51, 214, 248, 0.35) 30%, rgba(51, 214, 248, 0.55) 40%, rgba(51, 214, 248, 0.75) 50%, rgba(51, 214, 248, 0.85) 60%, rgba(51, 214, 248, 0.95) 70%, rgba(51, 214, 248, 0.98) 80%, #33d6f8 90%, #33d6f8 100%);
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Ensure characters content stays above the gradient */
+        .characters-content {
+            position: relative !important;
+            z-index: 20 !important;
+        }
+
+        .characters-background .section-bg {
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 8%, rgba(0, 0, 0, 0.6) 18%, black 30%, black 70%, rgba(0, 0, 0, 0.8) 88%, rgba(0, 0, 0, 0.3) 96%, black 100%) !important;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 8%, rgba(0, 0, 0, 0.6) 18%, black 30%, black 70%, rgba(0, 0, 0, 0.8) 88%, rgba(0, 0, 0, 0.3) 96%, black 100%) !important;
+        }
+
+        /* Safari-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .safari-fix {
+                -webkit-appearance: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+    </style>
+</head>
+
+<body class="safari-fix">
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="container nav-content">
+            <!-- Desktop Navigation -->
+            <div class="nav-links">
+                <!-- Language Toggle -->
+                <button class="lang-toggle" onclick="toggleLanguage()"
+                    style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+                    <span class="globe-icon">🌍</span>
+                    <span id="lang-text">PL</span>
+                    <div class="flag-indicators">
+                        <span class="flag" id="flag-en">🇺🇸</span>
+                        <span class="flag" id="flag-pl">🇵🇱</span>
+                    </div>
+                </button>
+
+                <a href="index.html" class="nav-link" data-text="nav.home">Home</a>
+                <a href="characters.html" class="nav-link" data-text="nav.characters">Characters</a>
+                <a href="about.html" class="nav-link" data-text="nav.about">About</a>
+                <a href="parents.html" class="nav-link" data-text="nav.parents">For Parents</a>
+                <a href="index.html#newsletter" class="btn-red" data-text="common.stayUpdated"
+                    style="height: 2.5rem; display: flex; align-items: center;">Stay Updated</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()"
+        style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <button class="mobile-lang-toggle" onclick="toggleLanguage()"
+                style="-webkit-tap-highlight-color: transparent;">
+                <span class="globe-icon">🌍</span>
+                <span id="mobile-lang-text">Switch to Polish</span>
+                <span id="mobile-flag">🇵🇱</span>
+            </button>
+
+            <a href="index.html" class="mobile-nav-link" data-text="nav.home" onclick="closeMobileMenu()">Home</a>
+            <a href="characters.html" class="mobile-nav-link" data-text="nav.characters"
+                onclick="closeMobileMenu()">Characters</a>
+            <a href="about.html" class="mobile-nav-link" data-text="nav.about" onclick="closeMobileMenu()">About</a>
+            <a href="parents.html" class="mobile-nav-link" data-text="nav.parents" onclick="closeMobileMenu()">For
+                Parents</a>
+            <a href="index.html#newsletter" class="btn-red" data-text="common.stayUpdated" onclick="closeMobileMenu()"
+                style="width: 100%; text-align: center; margin-top: 1rem;">Stay Updated</a>
+        </div>
+    </div>
+
+    <!-- Combined Characters Section -->
+    <section class="characters-section" id="characters">
+        <div class="characters-background">
+            <img src="public/bgsec3.png" alt="Characters Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with navigation -->
+        <div class="characters-top-gradient"></div>
+        <div class="container characters-content">
+            <!-- Characters Title and Subtitle -->
+            <div style="text-align: center; padding: 2rem 0 3rem; margin-top: 4rem;">
+                <div class="info-box">
+                    <h2 class="section-title" data-text="characters.title">Meet Our Amazing Characters</h2>
+                    <p class="page-subtitle" data-text="characters.subtitle">Discover the complete stories, personalities, and magical qualities of each beloved character from Rainbow Kingdom!</p>
+                </div>
+            </div>
+            <!-- Rainbow Character Detail -->
+            <article class="character-detail-card rainbow">
+                <div class="character-detail-content">
+                    <div class="character-detail-image">
+                        <div class="character-detail-frame">
+                            <img src="public/rainbowchar.png" alt="Tęcza" class="character-detail-img">
+                        </div>
+                    </div>
+                    <div class="character-detail-info">
+                        <div class="character-detail-header">
+                            <h2 class="character-detail-name" data-text="character.rainbow.name">Tęcza</h2>
+                            <div class="character-detail-nickname">
+                                <span data-text="character.rainbow.nickname">Tęcza</span>
+                            </div>
+                        </div>
+                        <blockquote class="character-detail-quote">
+                            <p data-text="character.rainbow.quote">W Tęczowym Królestwie wszyscy są równi i wyjątkowi!</p>
+                        </blockquote>
+                        <div class="character-detail-description">
+                            <p data-text="character.rainbow.description">Tęcza to wesoły i mądry książę Tęczowego Królestwa, miejsca gdzie wszyscy są równi. Ze swoim charakterystycznym tęczowym tyłkiem, Tęcza jest pewny siebie, przyjazny i zawsze gotowy na nową przygodę. Chociaż jest mądry, bywa też trochę głupawy, co czyni go idealnym liderem i przyjacielem w tym kolorowym krainie.</p>
+                        </div>
+                        <div class="character-detail-traits">
+                            <div class="traits-grid">
+                                <span class="trait-badge" data-text="trait.wise">Wise</span>
+                                <span class="trait-badge" data-text="trait.cheerful">Cheerful</span>
+                                <span class="trait-badge" data-text="trait.leader">Leader</span>
+                                <span class="trait-badge" data-text="trait.confident">Confident</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lily Character Detail -->
+            <article class="character-detail-card lily">
+                <div class="character-detail-content">
+                    <div class="character-detail-image">
+                        <div class="character-detail-frame">
+                            <img src="public/liliychar.png" alt="Lisica Lilly" class="character-detail-img">
+                        </div>
+                    </div>
+                    <div class="character-detail-info">
+                        <div class="character-detail-header">
+                            <h2 class="character-detail-name" data-text="character.lily.name">Lisica Lilly</h2>
+                            <div class="character-detail-nickname">
+                                <span data-text="character.lily.nickname">Lilly</span>
+                            </div>
+                        </div>
+                        <blockquote class="character-detail-quote">
+                            <p data-text="character.lily.quote">Żadna katastrofa, myślę szybciej, jestem mistrzem!</p>
+                        </blockquote>
+                        <div class="character-detail-description">
+                            <p data-text="character.lily.description">Lilly to sprytny i bystry lis w grupie. Jej superbohaterskie motto? "Żadna katastrofa, myślę szybciej, jestem mistrzem!" To ona zawsze wie, co robić w trudnej sytuacji. Choć potrafi być nieco psotna, wszystko to w dobrej zabawie, i zawsze służy pomocną łapą, gdy przyjaciele jej potrzebują.</p>
+                        </div>
+                        <div class="character-detail-traits">
+                            <div class="traits-grid">
+                                <span class="trait-badge" data-text="trait.clever">Clever</span>
+                                <span class="trait-badge" data-text="trait.witty">Witty</span>
+                                <span class="trait-badge" data-text="trait.helpful">Helpful</span>
+                                <span class="trait-badge" data-text="trait.smart">Smart</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lavender Character Detail -->
+            <article class="character-detail-card lavender">
+                <div class="character-detail-content">
+                    <div class="character-detail-image">
+                        <div class="character-detail-frame">
+                            <img src="public/fairychar.png" alt="Lawendowa Wróżka" class="character-detail-img">
+                        </div>
+                    </div>
+                    <div class="character-detail-info">
+                        <div class="character-detail-header">
+                            <h2 class="character-detail-name" data-text="character.lavender.name">Lawendowa Wróżka</h2>
+                            <div class="character-detail-nickname">
+                                <span data-text="character.lavender.nickname">Lawendowa</span>
+                            </div>
+                        </div>
+                        <blockquote class="character-detail-quote">
+                            <p data-text="character.lavender.quote">Szczypta magii sprawia, że wszystko staje się lepsze!</p>
+                        </blockquote>
+                        <div class="character-detail-description">
+                            <p data-text="character.lavender.description">Lawendowa Wróżka to magiczna pomocniczka, która pojawia się czasami, aby dodać odrobinę magii do każdego odcinka. Jej dobre serce i cudowne moce czynią ją wróżką do zadań specjalnych przy rozwiązywaniu problemów za pomocą odrobiny czarów.</p>
+                        </div>
+                        <div class="character-detail-traits">
+                            <div class="traits-grid">
+                                <span class="trait-badge" data-text="trait.magical">Magical</span>
+                                <span class="trait-badge" data-text="trait.kind">Kind</span>
+                                <span class="trait-badge" data-text="trait.helpful">Helpful</span>
+                                <span class="trait-badge" data-text="trait.enchanting">Enchanting</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Robin Character Detail -->
+            <article class="character-detail-card robin">
+                <div class="character-detail-content">
+                    <div class="character-detail-image">
+                        <div class="character-detail-frame">
+                            <img src="public/robbinchar.png" alt="Gryzi Piórek" class="character-detail-img">
+                        </div>
+                    </div>
+                    <div class="character-detail-info">
+                        <div class="character-detail-header">
+                            <h2 class="character-detail-name" data-text="character.robin.name">Gryzi Piórek</h2>
+                            <div class="character-detail-nickname">
+                                <span data-text="character.robin.nickname">Gryzi</span>
+                            </div>
+                        </div>
+                        <blockquote class="character-detail-quote">
+                            <p data-text="character.robin.quote">Mały, ale potężny, z kolorowym sercem!</p>
+                        </blockquote>
+                        <div class="character-detail-description">
+                            <p data-text="character.robin.description">Gryzi Piórek to mały ptak z sercem wielkim jak samo Tęczowe Królestwo! Pełen kolorów, Gryzi może być mały, ale wyróżnia się na swój własny, wyjątkowy sposób. Czy to latając wysoko, czy słodko śpiewając, Gryzi przynosi radość i kolorowy akcent wszędzie, gdzie się pojawi.</p>
+                        </div>
+                        <div class="character-detail-traits">
+                            <div class="traits-grid">
+                                <span class="trait-badge" data-text="trait.brave">Brave</span>
+                                <span class="trait-badge" data-text="trait.loyal">Loyal</span>
+                                <span class="trait-badge" data-text="trait.energetic">Energetic</span>
+                                <span class="trait-badge" data-text="trait.musical">Musical</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Andrew Character Detail -->
+            <article class="character-detail-card andrew">
+                <div class="character-detail-content">
+                    <div class="character-detail-image">
+                        <div class="character-detail-frame">
+                            <img src="public/andrewchar.png" alt="Andrzej Kret" class="character-detail-img">
+                        </div>
+                    </div>
+                    <div class="character-detail-info">
+                        <div class="character-detail-header">
+                            <h2 class="character-detail-name" data-text="character.andrew.name">Andrzej Kret</h2>
+                            <div class="character-detail-nickname">
+                                <span data-text="character.andrew.nickname">Andrzej</span>
+                            </div>
+                        </div>
+                        <blockquote class="character-detail-quote">
+                            <p data-text="character.andrew.quote">Ups! Ale nigdy się nie poddaję!</p>
+                        </blockquote>
+                        <div class="character-detail-description">
+                            <p data-text="character.andrew.description">Andrzej Kret to ukochana, niezgrabna postacja, która zawsze ma dobre intencje, ale jakoś kończy powodując mały chaos. Jego dobre intencje często prowadzą do zabawnych wpadek, ale jego wielkie serce i postawa "nigdy się nie poddawaj" czynią go ulubieniem dzieci. Przygody Andrzej przypominają nam, że nie ma nic złego w popełnianiu błędów, o ile nie przestajemy próbować!</p>
+                        </div>
+                        <div class="character-detail-traits">
+                            <div class="traits-grid">
+                                <span class="trait-badge" data-text="trait.persistent">Persistent</span>
+                                <span class="trait-badge" data-text="trait.funny">Funny</span>
+                                <span class="trait-badge" data-text="trait.determined">Determined</span>
+                                <span class="trait-badge" data-text="trait.lovable">Lovable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-background">
+            <div style="background-color: #33d6f8; width: 100%; height: 100%;"></div>
+        </div>
+        <div class="footer-content-simple">
+            <div class="footer-main-content">
+                <!-- Brand Section -->
+                <div class="footer-brand-section">
+                    <h4 class="footer-brand-title" data-text="footer.brandTitle">Rainbow Kingdom</h4>
+                    <p class="footer-description-simple" data-text="footer.description">A magical world where everyone is equal, and fun is always around the corner! Educational entertainment that children love and parents trust.</p>
+                    <div class="footer-logo-container">
+                        <div class="footer-logo-wrapper">
+                            <img src="public/logo.png" alt="Rainbow Kingdom Logo" class="footer-logo-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="footer-links-section">
+                    <h4 class="footer-section-title">Quick Links</h4>
+                    <nav class="footer-links-simple">
+                        <a href="about.html" class="footer-link" data-text="footer.aboutUs">About Us</a>
+                        <a href="parents.html" class="footer-link" data-text="footer.forParents">For Parents</a>
+                        <a href="characters.html" class="footer-link" data-text="footer.characters">Characters</a>
+                        <a href="index.html" class="footer-link">Home</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-contact-section">
+                    <h4 class="footer-section-title">Get in Touch</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i data-lucide="mail" class="footer-contact-icon"></i>
+                            <span>info@rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="globe" class="footer-contact-icon"></i>
+                            <span>www.rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="heart" class="footer-contact-icon"></i>
+                            <span>Made with love for kids</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p class="copyright-text" data-text="footer.copyright">© 2025 Pot Of Gold Production. All rights reserved.</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61564509247140&sk=friends_likes" class="footer-social-link" aria-label="Facebook" target="_blank">
+                        <i data-lucide="facebook" class="footer-social-icon"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="TikTok">
+                        <i data-lucide="video" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/teczowekrolestwo.pl?igsh=MWRiaHF5aG54N3JlYw%3D%3D&utm_source=qr" class="footer-social-link" aria-label="Instagram" target="_blank">
+                        <i data-lucide="instagram" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@RainbowKingdom86" class="footer-social-link" aria-label="YouTube" target="_blank">
+                        <i data-lucide="youtube" class="footer-social-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+
+</html>

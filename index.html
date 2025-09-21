@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Rainbow Kingdom - Where Everyone is Equal</title>
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Meta tags -->
+    <meta name="description"
+        content="Join Tęcza, Lisica Lilly, Lawendowa Wróżka, Gryzi Piórek, and Andrzej Kret on exciting adventures that teach friendship, problem-solving, and the importance of equality.">
+    <meta name="keywords"
+        content="Rainbow Kingdom, kids TV show, children entertainment, educational content, equality, friendship, animated series">
+    <meta name="author" content="Rainbow Kingdom Productions">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rainbow Kingdom - Where Everyone is Equal">
+    <meta property="og:description"
+        content="A magical world where everyone is friends and adventure awaits just around the corner!">
+    <meta property="og:image" content="public/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rainbow Kingdom - Where Everyone is Equal">
+    <meta name="twitter:description"
+        content="A magical world where everyone is friends and adventure awaits just around the corner!">
+    <meta name="twitter:image" content="public/logo.png">
+
+    <!-- iOS Web App optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Rainbow Kingdom">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#3b82f6">
+
+    <!-- Icons -->
+    <link rel="icon" href="public/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/logo.png">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="public/logo.png" as="image">
+    <link rel="preload" href="public/background.png" as="image">
+    <link rel="preload" href="public/top.png" as="image">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Critical CSS for faster rendering -->
+    <style>
+        /* Critical CSS for Safari and immediate rendering */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            height: 100%;
+            height: -webkit-fill-available;
+        }
+
+        /* Remove all tap highlights and focus outlines globally */
+        * {
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-focus-ring-color: transparent !important;
+            tap-highlight-color: transparent !important;
+        }
+        
+        *:focus {
+            outline: none !important;
+        }
+        
+        button:focus,
+        article:focus,
+        div:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            -webkit-overflow-scrolling: touch;
+            background-color: #33d6f8;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Safari-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .safari-fix {
+                -webkit-appearance: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        /* Override external CSS for seamless footer blending */
+        .newsletter-section {
+            margin-bottom: -2rem !important;
+            padding-bottom: 12rem !important;
+            position: relative !important;
+        }
+
+        /* Add bottom fade gradient overlay for seamless blending */
+        .newsletter-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(51, 214, 248, 0) 0%, rgba(51, 214, 248, 0.1) 10%, rgba(51, 214, 248, 0.2) 20%, rgba(51, 214, 248, 0.35) 30%, rgba(51, 214, 248, 0.55) 40%, rgba(51, 214, 248, 0.75) 50%, rgba(51, 214, 248, 0.85) 60%, rgba(51, 214, 248, 0.95) 70%, rgba(51, 214, 248, 0.98) 80%, #33d6f8 90%, #33d6f8 100%);
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Ensure newsletter content stays above the gradient */
+        .newsletter-content {
+            position: relative !important;
+            z-index: 20 !important;
+        }
+
+        .newsletter-background .section-bg {
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 8%, rgba(0, 0, 0, 0.6) 18%, black 30%, black 70%, rgba(0, 0, 0, 0.8) 88%, rgba(0, 0, 0, 0.3) 96%, black 100%) !important;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 8%, rgba(0, 0, 0, 0.6) 18%, black 30%, black 70%, rgba(0, 0, 0, 0.8) 88%, rgba(0, 0, 0, 0.3) 96%, black 100%) !important;
+        }
+
+        /* Character Popup Styles */
+        .character-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .character-popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .character-popup-modal {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .character-popup-overlay.active .character-popup-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .character-popup-close {
+            position: absolute !important;
+            top: 1rem !important;
+            right: 1rem !important;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000 !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: none !important;
+        }
+
+        .character-popup-close:hover {
+            background: white;
+            transform: scale(1.1) !important;
+        }
+
+        /* Ensure close button positioning is never affected by character-specific styles */
+        .character-popup-modal.rainbow .character-popup-close,
+        .character-popup-modal.lily .character-popup-close,
+        .character-popup-modal.lavender .character-popup-close,
+        .character-popup-modal.robin .character-popup-close,
+        .character-popup-modal.andrew .character-popup-close {
+            position: absolute !important;
+            top: 1rem !important;
+            right: 1rem !important;
+            z-index: 1000 !important;
+        }
+
+        .character-popup-content {
+            padding: 2rem;
+        }
+
+        .character-popup-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .character-popup-image {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            padding: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-character-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .character-popup-title h2 {
+            color: #1f2937;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            text-shadow: none;
+        }
+
+        .character-popup-quote {
+            color: #6b7280;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .character-popup-description {
+            margin-bottom: 2rem;
+        }
+
+        .character-popup-description p {
+            color: #374151;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .character-popup-traits h3 {
+            color: #1f2937;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+        }
+
+        .popup-traits-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .popup-trait-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Character-specific popup trait badge colors */
+        .character-popup-modal.rainbow .popup-trait-badge {
+            background: linear-gradient(135deg, #dc3b4d 0%, #c02e41 100%);
+            box-shadow: 0 4px 10px rgba(220, 59, 77, 0.3);
+        }
+
+        .character-popup-modal.lily .popup-trait-badge {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+        }
+
+        .character-popup-modal.lavender .popup-trait-badge {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .character-popup-modal.robin .popup-trait-badge {
+            background: linear-gradient(135deg, #7FE67A 0%, #65d95f 100%);
+            box-shadow: 0 4px 10px rgba(127, 230, 122, 0.3);
+        }
+
+        .character-popup-modal.andrew .popup-trait-badge {
+            background: linear-gradient(135deg, rgba(81, 18, 128, 1) 0%, rgba(68, 15, 108, 1) 100%);
+            box-shadow: 0 4px 10px rgba(81, 18, 128, 0.3);
+        }
+
+        /* Character-specific popup styling */
+        .character-popup-modal.rainbow .character-popup-image {
+            border: 3px solid #dc3b4d;
+        }
+
+        .character-popup-modal.lily .character-popup-image {
+            border: 3px solid #f59e0b;
+        }
+
+        .character-popup-modal.lavender .character-popup-image {
+            border: 3px solid #8b5cf6;
+        }
+
+        .character-popup-modal.robin .character-popup-image {
+            border: 3px solid #10b981;
+        }
+
+        .character-popup-modal.andrew .character-popup-image {
+            border: 3px solid #6b7280;
+        }
+
+        /* Character cards cursor pointer */
+        .character-card {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            outline: none;
+            border: none;
+            background: none;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .character-card:focus {
+            outline: none;
+        }
+
+        .character-card:active {
+            outline: none;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 640px) {
+            .character-popup-modal {
+                margin: 1rem;
+                max-height: 85vh;
+            }
+
+            .character-popup-content {
+                padding: 1.5rem;
+            }
+
+            .character-popup-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .character-popup-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .character-popup-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .character-popup-quote {
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+    /* Character card styling */
+    .character-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: white;
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: transform 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 160px;
+        margin: 1rem;
+    }
+
+    .character-card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Audio button styling */
+    .audio-button {
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-top: 1rem;
+        background: white;
+    }
+
+    .audio-button:hover {
+        transform: scale(1.1);
+    }
+
+    .audio-button i {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Character-specific audio button styles */
+    .audio-button--rainbow i {
+        color: #dc3b4d;
+    }
+
+    .audio-button--lily i {
+        color: #f97316;
+    }
+
+    .audio-button--lavender i {
+        color: #8b5cf6;
+    }
+
+    .audio-button--robin i {
+        color: #10b981;
+    }
+
+    .audio-button--andrew i {
+        color: #6b7280;
+    }
+
+    /* Character card layout adjustments */
+    .character-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: white;
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: transform 0.2s ease;
+    }
+
+    .character-portrait {
+        margin-bottom: 1rem;
+    }
+
+    .character-traits {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    .trait-badge {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Character-specific trait badge colors */
+    .character-card--rainbow .trait-badge {
+        background: linear-gradient(135deg, #dc3b4d 0%, #c02e41 100%);
+        box-shadow: 0 4px 10px rgba(220, 59, 77, 0.3);
+    }
+
+    .character-card--lily .trait-badge {
+        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+    }
+
+    .character-card--lavender .trait-badge {
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+    }
+
+    .character-card--robin .trait-badge {
+        background: linear-gradient(135deg, #7FE67A 0%, #65d95f 100%);
+        box-shadow: 0 4px 10px rgba(127, 230, 122, 0.3);
+    }
+
+    .character-card--andrew .trait-badge {
+        background: linear-gradient(135deg, rgba(81, 18, 128, 1) 0%, rgba(68, 15, 108, 1) 100%);
+        box-shadow: 0 4px 10px rgba(81, 18, 128, 0.3);
+    }
+
+    /* Character card layout adjustments */
+    .character-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: white;
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: transform 0.2s ease;
+    }
+</head>
+
+<body class="safari-fix">
+    <!-- Safari viewport height fix script -->
+    <script>
+        // Safari viewport height fix
+        function setSafariViewport() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', vh + 'px');
+        }
+        setSafariViewport();
+        window.addEventListener('resize', setSafariViewport);
+        window.addEventListener('orientationchange', setSafariViewport);
+
+        // Safari detection
+        function detectSafari() {
+            const ua = navigator.userAgent.toLowerCase();
+            const isSafari = /safari/.test(ua) && !/chrome|chromium|crios|fxios/.test(ua);
+            const isIOS = /iphone|ipad|ipod/.test(ua);
+
+            if (isSafari || isIOS) {
+                document.documentElement.classList.add('safari-browser');
+                document.body.classList.add('safari-browser');
+            }
+
+            // Check for low-end device
+            const isLowEnd = (
+                navigator.hardwareConcurrency <= 2 ||
+                navigator.deviceMemory <= 2 ||
+                /cpu os 9_|cpu os 10_|cpu os 11_/.test(ua)
+            );
+
+            if (isLowEnd) {
+                document.documentElement.classList.add('low-end-device');
+                document.body.classList.add('low-end-device');
+            }
+        }
+
+        detectSafari();
+    </script>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="container nav-content">
+            <!-- Desktop Navigation -->
+            <div class="nav-links">
+                <!-- Language Toggle -->
+                <button class="lang-toggle" onclick="toggleLanguage()"
+                    style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+                    <span class="globe-icon">🌍</span>
+                    <span id="lang-text">PL</span>
+                    <div class="flag-indicators">
+                        <span class="flag" id="flag-en">🇺🇸</span>
+                        <span class="flag" id="flag-pl">🇵🇱</span>
+                    </div>
+                </button>
+
+                <a href="index.html" class="nav-link" data-text="nav.home">Home</a>
+                <a href="characters.html" class="nav-link" data-text="nav.characters">Characters</a>
+                <a href="about.html" class="nav-link" data-text="nav.about">About</a>
+                <a href="parents.html" class="nav-link" data-text="nav.parents">For Parents</a>
+                <a href="#newsletter" class="btn-red" data-text="common.stayUpdated"
+                    style="height: 2.5rem; display: flex; align-items: center;">Stay Updated</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()"
+        style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                <i data-lucide="x"></i>
+            </button>
+            <button class="mobile-lang-toggle" onclick="toggleLanguage()"
+                style="-webkit-tap-highlight-color: transparent;">
+                <span class="globe-icon">🌍</span>
+                <span id="mobile-lang-text">Switch to Polish</span>
+                <span id="mobile-flag">🇵🇱</span>
+            </button>
+
+            <a href="index.html" class="mobile-nav-link" data-text="nav.home" onclick="closeMobileMenu()">Home</a>
+            <a href="characters.html" class="mobile-nav-link" data-text="nav.characters"
+                onclick="closeMobileMenu()">Characters</a>
+            <a href="about.html" class="mobile-nav-link" data-text="nav.about" onclick="closeMobileMenu()">About</a>
+            <a href="parents.html" class="mobile-nav-link" data-text="nav.parents" onclick="closeMobileMenu()">For
+                Parents</a>
+            <a href="#newsletter" class="btn-red" data-text="common.stayUpdated" onclick="closeMobileMenu()"
+                style="width: 100%; text-align: center; margin-top: 1rem;">Stay Updated</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Full Background Image -->
+        <div class="hero-background-full">
+            <img src="public/background.png" alt="Rainbow Kingdom Background" class="hero-bg-full">
+        </div>
+
+        <!-- Hero Content Container -->
+        <div class="hero-content-wrapper">
+            <div class="container">
+                <!-- Mobile Layout -->
+                <div class="hero-mobile">
+                    <div class="hero-left-content">
+                        <h1 class="hero-title">
+                            <span class="welcome-text" data-text="hero.welcome">WELCOME</span>
+                            <span class="to-the-line">
+                                <span class="to-text" data-text="hero.to">TO</span>
+                                <span class="the-text" data-text="hero.the">THE</span>
+                            </span>
+                            <span class="rainbow-text">
+                                <span class="letter" style="color: #d03926">R</span>
+                                <span class="letter" style="color: #e2993b">A</span>
+                                <span class="letter" style="color: #eab308">I</span>
+                                <span class="letter" style="color: #e5ed51">N</span>
+                                <span class="letter" style="color: #75e901">B</span>
+                                <span class="letter" style="color: #415bd4">O</span>
+                                <span class="letter" style="color: #263578">W</span>
+                            </span>
+                            <span class="kingdom-text" data-text="hero.kingdom">KINGDOM</span>
+                        </h1>
+
+                        <!-- Inline characters image shown only on small mobile -->
+                        <div class="hero-characters-inline">
+                            <img src="public/top.png" alt="Rainbow Kingdom Characters" class="characters-image-inline">
+                        </div>
+
+                        <p class="hero-subtitle" data-text="hero.subtitle">
+                            A magical world where everyone is friends and adventure awaits just around the corner!
+                        </p>
+
+                        <div class="social-platforms">
+                            <a href="#" class="social-btn tiktok" target="_blank">
+                                <i data-lucide="video"></i>
+                                <span data-text="social.tiktok">TikTok</span>
+                            </a>
+                            <a href="#" class="social-btn instagram" target="_blank">
+                                <i data-lucide="camera"></i>
+                                <span data-text="social.instagram">Instagram</span>
+                            </a>
+                            <a href="#" class="social-btn facebook" target="_blank">
+                                <i data-lucide="users"></i>
+                                <span data-text="social.facebook">Facebook</span>
+                            </a>
+                            <a href="#" class="social-btn youtube" target="_blank">
+                                <i data-lucide="play"></i>
+                                <span data-text="social.youtube">YouTube</span>
+                            </a>
+                        </div>
+
+                        <div class="cta-buttons">
+                            <a href="#trailer" class="btn-watch-trailer">
+                                <i data-lucide="play"></i>
+                                <span data-text="hero.watchTrailer">Watch Trailer</span>
+                            </a>
+                            <a href="characters.html" class="btn-meet-characters">
+                                <i data-lucide="heart"></i>
+                                <span data-text="hero.meetCharacters">Meet Characters</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Characters positioned on the right -->
+                    <div class="hero-characters-mobile">
+                        <img src="public/top.png" alt="Rainbow Kingdom Characters" class="characters-image-mobile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="trailer">
+        <div class="video-background">
+            <img src="public/bgsec2.png" alt="Video Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with hero section -->
+        <div class="video-top-gradient"></div>
+        <div class="container video-content">
+            <h2 class="section-title" data-text="trailer.watchNow">Watch Trailer</h2>
+            <p class="section-subtitle" data-text="trailer.subtitle">Get a sneak peek into the magical world of Rainbow
+                Kingdom!</p>
+
+            <div class="video-placeholder">
+                <iframe class="video-thumb" src="https://www.youtube.com/embed/VpcJwe8WPyc" title="Rainbow Kingdom Trailer"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section class="characters-section" id="characters">
+        <div class="characters-background">
+            <img src="public/bgsec3.png" alt="Characters Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with video section -->
+        <div class="characters-top-gradient"></div>
+        <div class="container characters-content">
+            <h2 class="section-title" data-text="characters.title">Meet Our Amazing Characters</h2>
+            <p class="section-subtitle" data-text="characters.subtitle">Each character brings unique qualities and
+                teaches valuable lessons about friendship, problem-solving, and believing in yourself!</p>
+
+            <!-- Characters Grid -->
+            <div class="characters-grid">
+                <!-- Rainbow Character -->
+                <article class="character-card character-card--rainbow" data-character="rainbow" onclick="openCharacterPopup('rainbow')">
+                    <div class="character-portrait">
+                        <div class="character-frame">
+                            <img src="public/rainbowbutt.png" alt="Rainbow" class="character-image">
+                        </div>
+                    </div>
+                    <div class="character-name-badge rainbow">
+                        <span data-text="character.rainbow.name">Tęcza</span>
+                    </div>
+                    <div class="character-quote">
+                        <p data-text="character.rainbow.quote">"In Rainbow Kingdom, everyone is equal and special!"</p>
+                    </div>
+                    <div class="character-traits">
+                        <span class="trait-badge">Wise</span>
+                        <span class="trait-badge">Happy</span>
+                        <span class="trait-badge">Leader</span>
+                        <span class="trait-badge">Strong</span>
+                    </div>
+                    <button class="audio-button audio-button--rainbow" onclick="playCharacterAudio('rainbow')" aria-label="Play Rainbow's audio">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </article>
+
+                <!-- Lily Character -->
+                <article class="character-card character-card--lily" data-character="lily" onclick="openCharacterPopup('lily')">
+                    <div class="character-portrait">
+                        <div class="character-frame">
+                            <img src="public/lillythefox.png" alt="Lisica Lilly" class="character-image">
+                        </div>
+                    </div>
+                    <div class="character-name-badge lily">
+                        <span data-text="character.lily.name">Lisica Lilly</span>
+                    </div>
+                    <div class="character-quote">
+                        <p data-text="character.lily.quote">"No disaster, I think faster, I'm the master!"</p>
+                    </div>
+                    <div class="character-traits">
+                        <span class="trait-badge">Clever</span>
+                        <span class="trait-badge">Witty</span>
+                        <span class="trait-badge">Helpful</span>
+                        <span class="trait-badge">Smart</span>
+                    </div>
+                    <button class="audio-button audio-button--lily" onclick="playCharacterAudio('lily')" aria-label="Play Lisica Lilly's audio">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </article>
+
+                <!-- Lavender Character -->
+                <article class="character-card character-card--lavender" data-character="lavender" onclick="openCharacterPopup('lavender')">
+                    <div class="character-portrait">
+                        <div class="character-frame">
+                            <img src="public/fairy.png" alt="Lawendowa Wróżka" class="character-image">
+                        </div>
+                    </div>
+                    <div class="character-name-badge lavender">
+                        <span data-text="character.lavender.name">Lawendowa Wróżka</span>
+                    </div>
+                    <div class="character-quote">
+                        <p data-text="character.lavender.quote">"A sprinkle of magic makes everything better!"</p>
+                    </div>
+                    <div class="character-traits">
+                        <span class="trait-badge">Magical</span>
+                        <span class="trait-badge">Kind</span>
+                        <span class="trait-badge">Helpful</span>
+                        <span class="trait-badge">Sweet</span>
+                    </div>
+                    <button class="audio-button audio-button--lavender" onclick="playCharacterAudio('lavender')" aria-label="Play Lawendowa Wróżka's audio">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </article>
+
+                <!-- Robin Character -->
+                <article class="character-card character-card--robin" data-character="robin" onclick="openCharacterPopup('robin')">
+                    <div class="character-portrait">
+                        <div class="character-frame">
+                            <img src="public/robin.png" alt="Gryzi Piórek" class="character-image">
+                        </div>
+                    </div>
+                    <div class="character-name-badge robin">
+                        <span data-text="character.robin.name">Gryzi Piórek</span>
+                    </div>
+                    <div class="character-quote">
+                        <p data-text="character.robin.quote">"Small but mighty, with a colorful heart!"</p>
+                    </div>
+                    <div class="character-traits">
+                        <span class="trait-badge">Brave</span>
+                        <span class="trait-badge">Loyal</span>
+                        <span class="trait-badge">Energetic</span>
+                        <span class="trait-badge">Musical</span>
+                    </div>
+                    <button class="audio-button audio-button--robin" onclick="playCharacterAudio('robin')" aria-label="Play Gryzi Piórek's audio">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </article>
+
+                <!-- Andrew Character -->
+                <article class="character-card character-card--andrew" data-character="andrew" onclick="openCharacterPopup('andrew')">
+                    <div class="character-portrait">
+                        <div class="character-frame">
+                            <img src="public/andrew.png" alt="Andrzej Kret" class="character-image">
+                        </div>
+                    </div>
+                    <div class="character-name-badge andrew">
+                        <span data-text="character.andrew.name">Andrzej Kret</span>
+                    </div>
+                    <div class="character-quote">
+                        <p data-text="character.andrew.quote">"Oops! But I never give up trying!"</p>
+                    </div>
+                    <div class="character-traits">
+                        <span class="trait-badge">Persistent</span>
+                        <span class="trait-badge">Funny</span>
+                        <span class="trait-badge">Determined</span>
+                        <span class="trait-badge">Lovable</span>
+                    </div>
+                    <button class="audio-button audio-button--andrew" onclick="playCharacterAudio('andrew')" aria-label="Play Andrzej Kret's audio">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </article>
+            </div>
+
+            <div class="characters-cta">
+                <a href="characters.html" class="btn-primary">
+                    <i data-lucide="star"></i>
+                    <span data-text="characters.meetAllFriends">Meet All Our Friends</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Elements -->
+    <div class="audio-container">
+        <audio id="rainbow-audio" src="public/audio/rainbow.mp3"></audio>
+        <audio id="lily-audio" src="public/audio/lily.mp3"></audio>
+        <audio id="lavender-audio" src="public/audio/lavender.mp3"></audio>
+        <audio id="robin-audio" src="public/audio/robin.mp3"></audio>
+        <audio id="andrew-audio" src="public/audio/andrew.mp3"></audio>
+    </div>
+
+    <script>
+        // Audio playback function
+        function playCharacterAudio(character) {
+            const audioElement = document.getElementById(character + '-audio');
+            if (audioElement) {
+                audioElement.currentTime = 0; // Rewind to start
+                audioElement.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            }
+        }
+    </script>
+
+    <!-- Education Section -->
+    <section class="education-section" id="about">
+        <div class="education-background">
+            <img src="public/bgsec4.png" alt="Education Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with characters section -->
+        <div class="education-top-gradient"></div>
+        <div class="container education-content">
+            <h2 class="section-title" data-text="about.title">Educational Entertainment</h2>
+            <p class="section-subtitle" data-text="about.subtitle">Rainbow Kingdom promotes equality, friendship, and
+                problem-solving through engaging adventures that children love and parents trust.</p>
+
+            <div class="education-grid">
+                <!-- Kindness & Friendship Card -->
+                <div class="education-card" data-color="#dc3b4d">
+                    <div class="education-card-inner">
+                        <div class="education-shine"></div>
+                        <div class="education-content-wrapper">
+                            <div class="education-icon-container">
+                                <div class="education-icon-box">
+                                    <i data-lucide="heart" class="education-icon"></i>
+                                </div>
+                            </div>
+                            <div class="education-text-content">
+                                <h3 class="education-title" data-text="about.equality.title">Kindness & Friendship</h3>
+                                <p class="education-description" data-text="about.equality.description">Teaching
+                                    children to be kind to others and that friendship conquers all challenges.</p>
+                            </div>
+                        </div>
+                        <div class="education-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Educational Content Card -->
+                <div class="education-card" data-color="#f97316">
+                    <div class="education-card-inner">
+                        <div class="education-shine"></div>
+                        <div class="education-content-wrapper">
+                            <div class="education-icon-container">
+                                <div class="education-icon-box">
+                                    <i data-lucide="book-open" class="education-icon"></i>
+                                </div>
+                            </div>
+                            <div class="education-text-content">
+                                <h3 class="education-title" data-text="about.education.title">Educational Content</h3>
+                                <p class="education-description" data-text="about.education.description">Fun adventures
+                                    that teach problem-solving, resilience, and important life lessons.</p>
+                            </div>
+                        </div>
+                        <div class="education-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Quality Animation Card -->
+                <div class="education-card" data-color="#8b5cf6">
+                    <div class="education-card-inner">
+                        <div class="education-shine"></div>
+                        <div class="education-content-wrapper">
+                            <div class="education-icon-container">
+                                <div class="education-icon-box">
+                                    <i data-lucide="sparkles" class="education-icon"></i>
+                                </div>
+                            </div>
+                            <div class="education-text-content">
+                                <h3 class="education-title" data-text="about.quality.title">Quality Animation</h3>
+                                <p class="education-description" data-text="about.quality.description">Professional
+                                    animation and storytelling that parents trust and kids love.</p>
+                            </div>
+                        </div>
+                        <div class="education-bg-pattern"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" id="newsletter">
+        <!-- Background Image -->
+        <div class="newsletter-background">
+            <img src="public/bgsec5.png" alt="Newsletter Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with education section -->
+        <div class="newsletter-top-gradient"></div>
+
+        <div class="container newsletter-content">
+            <!-- Newsletter Section -->
+            <div class="newsletter-wrapper">
+                <div class="newsletter-text-content">
+                    <h2 class="newsletter-title" data-text="newsletter.title">Never Miss an Episode</h2>
+                    <p class="newsletter-subtitle" data-text="newsletter.subtitle">Sign up for our newsletter and be the
+                        first to know when Rainbow Kingdom launches on your favorite platform!</p>
+
+                    <div class="newsletter-form-container">
+                        <form class="newsletter-form">
+                            <div class="newsletter-form-fields">
+                                <input type="email" class="newsletter-input" data-placeholder="newsletter.placeholder"
+                                    placeholder="Enter your email address" required>
+                                <button type="submit" class="newsletter-btn">
+                                    <span data-text="newsletter.button">Stay Updated</span>
+                                </button>
+                            </div>
+
+                            <div class="newsletter-privacy">
+                                <i data-lucide="check"></i>
+                                <span data-text="newsletter.noSpam">No spam, just magical updates!</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meet Our Team Section -->
+            <div class="meet-team-section">
+                <h2 class="meet-team-title" data-text="common.meetOurTeam">Meet Our Team</h2>
+                <p class="meet-team-subtitle" data-text="common.meetOurTeamSubtitle">Meet the talented creators who bring the magical world of the Rainbow
+                    Kingdom to life!</p>
+
+                <div class="meet-team-cta">
+                    <button class="btn-meet-characters">
+                        <i data-lucide="star"></i>
+                        <span data-text="common.meetOurTeam">Meet Our Team</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Character Popup Modal -->
+    <div id="characterPopup" class="character-popup-overlay" onclick="closeCharacterPopup()">
+        <div class="character-popup-modal" onclick="event.stopPropagation()">
+            <button class="character-popup-close" onclick="closeCharacterPopup()">
+                <i data-lucide="x"></i>
+            </button>
+            
+            <div class="character-popup-content">
+                <div class="character-popup-header">
+                    <div class="character-popup-image">
+                        <img id="popupCharacterImage" src="" alt="" class="popup-character-img">
+                    </div>
+                    <div class="character-popup-title">
+                        <h2 id="popupCharacterName" data-text=""></h2>
+                        <p id="popupCharacterQuote" class="character-popup-quote" data-text=""></p>
+                    </div>
+                </div>
+                
+                <div class="character-popup-body">
+                    <div class="character-popup-description">
+                        <p id="popupCharacterDescription" data-text=""></p>
+                    </div>
+                    
+                    <div class="character-popup-traits">
+                        <h3 data-text="popup.traits">Character Traits</h3>
+                        <div id="popupCharacterTraits" class="popup-traits-list">
+                            <!-- Traits will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-background">
+            <div style="background-color: #33d6f8; width: 100%; height: 100%;"></div>
+        </div>
+        <div class="footer-content-simple">
+            <div class="footer-main-content">
+                <!-- Brand Section -->
+                <div class="footer-brand-section">
+                    <h4 class="footer-brand-title" data-text="footer.brandTitle">Rainbow Kingdom</h4>
+                    <p class="footer-description-simple" data-text="footer.description">A magical world where everyone is equal, and fun is always around the corner! Educational entertainment that children love and parents trust.</p>
+                    <div class="footer-logo-container">
+                        <div class="footer-logo-wrapper">
+                            <img src="public/logo.png" alt="Rainbow Kingdom Logo" class="footer-logo-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="footer-links-section">
+                    <h4 class="footer-section-title">Quick Links</h4>
+                    <nav class="footer-links-simple">
+                        <a href="about.html" class="footer-link" data-text="footer.aboutUs">About Us</a>
+                        <a href="parents.html" class="footer-link" data-text="footer.forParents">For Parents</a>
+                        <a href="characters.html" class="footer-link" data-text="footer.characters">Characters</a>
+                        <a href="index.html" class="footer-link">Home</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-contact-section">
+                    <h4 class="footer-section-title">Get in Touch</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i data-lucide="mail" class="footer-contact-icon"></i>
+                            <span>info@rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="globe" class="footer-contact-icon"></i>
+                            <span>www.rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="heart" class="footer-contact-icon"></i>
+                            <span>Made with love for kids</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p class="copyright-text" data-text="footer.copyright">© 2025 Pot Of Gold Production. All rights reserved.</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61564509247140&sk=friends_likes" class="footer-social-link" aria-label="Facebook" target="_blank">
+                        <i data-lucide="facebook" class="footer-social-icon"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="TikTok">
+                        <i data-lucide="video" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/teczowekrolestwo.pl?igsh=MWRiaHF5aG54N3JlYw%3D%3D&utm_source=qr" class="footer-social-link" aria-label="Instagram" target="_blank">
+                        <i data-lucide="instagram" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@RainbowKingdom86" class="footer-social-link" aria-label="YouTube" target="_blank">
+                        <i data-lucide="youtube" class="footer-social-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include a JavaScript file for all functionality -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+
+</html>

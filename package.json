@@ -1,45 +1,35 @@
 {
-  "name": "solana-jackpot-platform",
+  "name": "rainbow-kingdom",
   "version": "1.0.0",
-  "description": "A web-based jackpot platform on Solana with 60-second cycles and Phantom wallet integration",
-  "private": true,
+  "description": "Rainbow Kingdom - A magical world where everyone is equal. An educational children's entertainment website promoting values of equality, friendship, and problem-solving.",
+  "main": "index.html",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "lint": "next lint",
-    "server": "node server/index.js"
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000",
+    "build": "echo 'No build required - static site'",
+    "preview": "npx serve . -p 4173"
   },
-  "dependencies": {
-    "next": "^14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@solana/wallet-adapter-base": "^0.9.23",
-    "@solana/wallet-adapter-react": "^0.15.35",
-    "@solana/wallet-adapter-react-ui": "^0.9.35",
-    "@solana/wallet-adapter-phantom": "^0.9.24",
-    "@solana/web3.js": "^1.87.6",
-    "@coral-xyz/anchor": "^0.29.0",
-    "framer-motion": "^10.16.4",
-    "tailwindcss": "^3.3.5",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "socket.io-client": "^4.7.2",
-    "socket.io": "^4.7.2",
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "zustand": "^4.4.4",
-    "react-hot-toast": "^2.4.1",
-    "lucide-react": "^0.292.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0"
+  "keywords": [
+    "rainbow-kingdom",
+    "kids-tv-show",
+    "children-entertainment",
+    "educational-content",
+    "equality",
+    "friendship",
+    "animated-series",
+    "static-site"
+  ],
+  "author": "Rainbow Kingdom Productions",
+  "license": "MIT",
+  "homepage": "https://rainbow-kingdom.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rainbow-kingdom/rainbow-kingdom.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.7",
-    "@types/react": "^18.2.31",
-    "@types/react-dom": "^18.2.14",
-    "eslint": "^8.51.0",
-    "eslint-config-next": "^14.0.0",
-    "typescript": "^5.2.2"
+    "serve": "^14.0.0"
   }
-} 
+}

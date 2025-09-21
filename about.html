@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>About - Rainbow Kingdom</title>
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Meta tags -->
+    <meta name="description"
+        content="Learn about Rainbow Kingdom - educational entertainment that promotes equality, friendship, and problem-solving through engaging adventures.">
+    <meta name="keywords"
+        content="Rainbow Kingdom about, educational entertainment, kids TV show, equality, friendship, problem-solving">
+    <meta name="author" content="Rainbow Kingdom Productions">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About - Rainbow Kingdom">
+    <meta property="og:description"
+        content="Discover the educational values and mission behind Rainbow Kingdom - where everyone is equal and adventure awaits!">
+    <meta property="og:image" content="public/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About - Rainbow Kingdom">
+    <meta name="twitter:description"
+        content="Discover the educational values and mission behind Rainbow Kingdom - where everyone is equal and adventure awaits!">
+    <meta name="twitter:image" content="public/logo.png">
+
+    <!-- iOS Web App optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Rainbow Kingdom">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#3b82f6">
+
+    <!-- Icons -->
+    <link rel="icon" href="public/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/logo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Critical CSS for faster rendering -->
+    <style>
+        /* Critical CSS for Safari and immediate rendering */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            height: 100%;
+            height: -webkit-fill-available;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            -webkit-overflow-scrolling: touch;
+            background: linear-gradient(135deg, #4065ac 0%, #5a7bc8 25%, #33d6f8 50%, #45e3ff 75%, #4065ac 100%);
+            background-attachment: fixed;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* About page specific info-box styling */
+        .info-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 1000px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        /* Mobile responsive info-box styling */
+        @media (max-width: 768px) {
+            .info-box {
+                max-width: calc(100vw - 3rem);
+                margin: 1rem 1.5rem;
+                padding: 1.25rem;
+            }
+
+            /* Make top two boxes slightly narrower than Parents on mobile */
+            .education-content > div:first-child .info-box,
+            .education-content > .mission-box.info-box {
+                max-width: calc(100vw - 5rem) !important;
+                margin: 1rem 2.5rem !important;
+            }
+
+        }
+        
+        @media (max-width: 480px) {
+            .info-box {
+                max-width: calc(100vw - 2rem);
+                margin: 1rem 1rem;
+                padding: 1rem;
+            }
+
+            /* Make top two boxes slightly narrower than Parents on small phones */
+            .education-content > div:first-child .info-box,
+            .education-content > .mission-box.info-box {
+                max-width: calc(100vw - 3.5rem) !important;
+                margin: 1rem 1.75rem !important;
+            }
+
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        .info-box h1,
+        .info-box h2 {
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .info-box p,
+        .info-box .section-subtitle {
+            color: #333333;
+            text-shadow: none;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .mission-box {
+            background: rgba(51, 214, 248, 0.2);
+            border: 1px solid rgba(51, 214, 248, 0.3);
+        }
+
+        /* About page specific section background opacity */
+        .hero-bg-full,
+        .section-bg {
+            opacity: 0.5 !important;
+        }
+
+        /* Safari-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .safari-fix {
+                -webkit-appearance: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        /* Override external CSS for seamless footer blending */
+        .education-section {
+            margin-bottom: -2rem !important;
+            padding-bottom: 6rem !important;
+            position: relative !important;
+        }
+
+        /* Add bottom fade gradient overlay for seamless blending */
+        .education-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(51, 214, 248, 0) 0%, rgba(51, 214, 248, 0.1) 10%, rgba(51, 214, 248, 0.2) 20%, rgba(51, 214, 248, 0.35) 30%, rgba(51, 214, 248, 0.55) 40%, rgba(51, 214, 248, 0.75) 50%, rgba(51, 214, 248, 0.85) 60%, rgba(51, 214, 248, 0.95) 70%, rgba(51, 214, 248, 0.98) 80%, #33d6f8 90%, #33d6f8 100%);
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Ensure education content stays above the gradient */
+        .education-content {
+            position: relative !important;
+            z-index: 20 !important;
+        }
+
+        .education-background .section-bg {
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 8%, rgba(0, 0, 0, 0.6) 18%, black 30%, black 70%, rgba(0, 0, 0, 0.8) 88%, rgba(0, 0, 0, 0.3) 96%, black 100%) !important;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 8%, rgba(0, 0, 0, 0.6) 18%, black 30%, black 70%, rgba(0, 0, 0, 0.8) 88%, rgba(0, 0, 0, 0.3) 96%, black 100%) !important;
+        }
+    </style>
+</head>
+
+<body class="safari-fix">
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="container nav-content">
+            <!-- Desktop Navigation -->
+            <div class="nav-links">
+                <!-- Language Toggle -->
+                <button class="lang-toggle" onclick="toggleLanguage()"
+                    style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+                    <span class="globe-icon">🌍</span>
+                    <span id="lang-text">PL</span>
+                    <div class="flag-indicators">
+                        <span class="flag" id="flag-en">🇺🇸</span>
+                        <span class="flag" id="flag-pl">🇵🇱</span>
+                    </div>
+                </button>
+
+                <a href="index.html" class="nav-link" data-text="nav.home">Home</a>
+                <a href="characters.html" class="nav-link" data-text="nav.characters">Characters</a>
+                <a href="about.html" class="nav-link" data-text="nav.about">About</a>
+                <a href="parents.html" class="nav-link" data-text="nav.parents">For Parents</a>
+                <a href="index.html#newsletter" class="btn-red" data-text="common.stayUpdated"
+                    style="height: 2.5rem; display: flex; align-items: center;">Stay Updated</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()"
+        style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <button class="mobile-lang-toggle" onclick="toggleLanguage()"
+                style="-webkit-tap-highlight-color: transparent;">
+                <span class="globe-icon">🌍</span>
+                <span id="mobile-lang-text">Switch to Polish</span>
+                <span id="mobile-flag">🇵🇱</span>
+            </button>
+
+            <a href="index.html" class="mobile-nav-link" data-text="nav.home" onclick="closeMobileMenu()">Home</a>
+            <a href="characters.html" class="mobile-nav-link" data-text="nav.characters"
+                onclick="closeMobileMenu()">Characters</a>
+            <a href="about.html" class="mobile-nav-link" data-text="nav.about" onclick="closeMobileMenu()">About</a>
+            <a href="parents.html" class="mobile-nav-link" data-text="nav.parents" onclick="closeMobileMenu()">For
+                Parents</a>
+            <a href="index.html#newsletter" class="btn-red" data-text="common.stayUpdated" onclick="closeMobileMenu()"
+                style="width: 100%; text-align: center; margin-top: 1rem;">Stay Updated</a>
+        </div>
+    </div>
+
+    <!-- Combined About Section -->
+    <section class="education-section">
+        <div class="education-background">
+            <img src="public/bgsec5.png" alt="About Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with navigation -->
+        <div class="education-top-gradient"></div>
+        <div class="container education-content">
+            <!-- About Title and Subtitle -->
+            <div style="text-align: center; padding: 2rem 0 1rem; margin-top: 4rem;">
+                <div class="info-box">
+                    <h2 class="section-title" data-text="about.pageTitle">About Rainbow Kingdom</h2>
+                    <p class="page-subtitle" data-text="about.pageSubtitle">Educational entertainment that promotes equality,
+                        friendship, and problem-solving through engaging adventures that children love and parents trust.</p>
+                </div>
+            </div>
+            
+            <!-- Our Mission - Combined Content -->
+            <div class="info-box mission-box">
+                <h2 class="section-title" data-text="about.mission.title">Our Mission</h2>
+                <p class="section-subtitle" data-text="about.mission.subtitle">Rainbow Kingdom is more than just entertainment – it's a platform for teaching children important life values through engaging storytelling and lovable characters.</p>
+                
+                <p style="font-size: 1.125rem; line-height: 1.7; color: #333333; margin-bottom: 1.5rem; font-weight: 500; margin-top: 2rem;" data-text="about.mission.paragraph1">Our mission is to create content that not only entertains but also educates, fostering a generation of kind, empathetic, and confident children.</p>
+                
+                <p style="font-size: 1.125rem; line-height: 1.7; color: #333333; margin-bottom: 1.5rem; font-weight: 500;" data-text="about.mission.paragraph2">Set in a magical world where everyone is equal and friendship conquers all challenges, Rainbow Kingdom provides a safe space for children to learn about diversity, problem-solving, and the importance of believing in yourself and others.</p>
+                
+                <p style="font-size: 1.125rem; line-height: 1.7; color: #333333; margin-bottom: 1.5rem; font-weight: 500;" data-text="about.mission.paragraph3">Every episode is carefully crafted to deliver meaningful messages while keeping children engaged with colorful animation, memorable characters, and exciting adventures that spark imagination and curiosity.</p>
+            </div>
+
+            <!-- Educational Entertainment Content -->
+            <div style="margin-top: 5rem;">
+                <h2 class="section-title" data-text="about.title">Educational Entertainment</h2>
+                <p class="section-subtitle" data-text="about.subtitle">Rainbow Kingdom promotes equality, friendship, and
+                    problem-solving through engaging adventures that children love and parents trust.</p>
+
+                <div class="education-grid">
+                <!-- Kindness & Friendship Card -->
+                <div class="education-card" data-color="#dc3b4d">
+                    <div class="education-card-inner">
+                        <div class="education-shine"></div>
+                        <div class="education-content-wrapper">
+                            <div class="education-icon-container">
+                                <div class="education-icon-box">
+                                    <i data-lucide="heart" class="education-icon"></i>
+                                </div>
+                            </div>
+                            <div class="education-text-content">
+                                <h3 class="education-title" data-text="about.equality.title">Kindness & Friendship</h3>
+                                <p class="education-description" data-text="about.equality.description">Teaching
+                                    children to be kind to others and that friendship conquers all challenges.</p>
+                            </div>
+                        </div>
+                        <div class="education-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Educational Content Card -->
+                <div class="education-card" data-color="#f97316">
+                    <div class="education-card-inner">
+                        <div class="education-shine"></div>
+                        <div class="education-content-wrapper">
+                            <div class="education-icon-container">
+                                <div class="education-icon-box">
+                                    <i data-lucide="book-open" class="education-icon"></i>
+                                </div>
+                            </div>
+                            <div class="education-text-content">
+                                <h3 class="education-title" data-text="about.education.title">Educational Content</h3>
+                                <p class="education-description" data-text="about.education.description">Fun adventures
+                                    that teach problem-solving, resilience, and important life lessons.</p>
+                            </div>
+                        </div>
+                        <div class="education-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Quality Animation Card -->
+                <div class="education-card" data-color="#8b5cf6">
+                    <div class="education-card-inner">
+                        <div class="education-shine"></div>
+                        <div class="education-content-wrapper">
+                            <div class="education-icon-container">
+                                <div class="education-icon-box">
+                                    <i data-lucide="sparkles" class="education-icon"></i>
+                                </div>
+                            </div>
+                            <div class="education-text-content">
+                                <h3 class="education-title" data-text="about.quality.title">Quality Animation</h3>
+                                <p class="education-description" data-text="about.quality.description">Professional
+                                    animation and storytelling that parents trust and kids love.</p>
+                            </div>
+                        </div>
+                        <div class="education-bg-pattern"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-background">
+            <div style="background-color: #33d6f8; width: 100%; height: 100%;"></div>
+        </div>
+        <div class="footer-content-simple">
+            <div class="footer-main-content">
+                <!-- Brand Section -->
+                <div class="footer-brand-section">
+                    <h4 class="footer-brand-title" data-text="footer.brandTitle">Rainbow Kingdom</h4>
+                    <p class="footer-description-simple" data-text="footer.description">A magical world where everyone is equal, and fun is always around the corner! Educational entertainment that children love and parents trust.</p>
+                    <div class="footer-logo-container">
+                        <div class="footer-logo-wrapper">
+                            <img src="public/logo.png" alt="Rainbow Kingdom Logo" class="footer-logo-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="footer-links-section">
+                    <h4 class="footer-section-title">Quick Links</h4>
+                    <nav class="footer-links-simple">
+                        <a href="about.html" class="footer-link" data-text="footer.aboutUs">About Us</a>
+                        <a href="parents.html" class="footer-link" data-text="footer.forParents">For Parents</a>
+                        <a href="characters.html" class="footer-link" data-text="footer.characters">Characters</a>
+                        <a href="index.html" class="footer-link">Home</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-contact-section">
+                    <h4 class="footer-section-title">Get in Touch</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i data-lucide="mail" class="footer-contact-icon"></i>
+                            <span>info@rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="globe" class="footer-contact-icon"></i>
+                            <span>www.rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="heart" class="footer-contact-icon"></i>
+                            <span>Made with love for kids</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p class="copyright-text" data-text="footer.copyright">© 2025 Pot Of Gold Production. All rights reserved.</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61564509247140&sk=friends_likes" class="footer-social-link" aria-label="Facebook" target="_blank">
+                        <i data-lucide="facebook" class="footer-social-icon"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="TikTok">
+                        <i data-lucide="video" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/teczowekrolestwo.pl?igsh=MWRiaHF5aG54N3JlYw%3D%3D&utm_source=qr" class="footer-social-link" aria-label="Instagram" target="_blank">
+                        <i data-lucide="instagram" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@RainbowKingdom86" class="footer-social-link" aria-label="YouTube" target="_blank">
+                        <i data-lucide="youtube" class="footer-social-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+
+</html>

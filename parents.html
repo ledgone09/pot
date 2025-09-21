@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>For Parents - Rainbow Kingdom</title>
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Meta tags -->
+    <meta name="description"
+        content="Discover why Rainbow Kingdom is trusted by parents worldwide - safe, educational content that teaches valuable life lessons.">
+    <meta name="keywords"
+        content="Rainbow Kingdom parents, safe kids TV, educational content, children entertainment, parental guidance">
+    <meta name="author" content="Rainbow Kingdom Productions">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="For Parents - Rainbow Kingdom">
+    <meta property="og:description"
+        content="Learn why Rainbow Kingdom is the perfect educational entertainment choice for your children.">
+    <meta property="og:image" content="public/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="For Parents - Rainbow Kingdom">
+    <meta name="twitter:description"
+        content="Learn why Rainbow Kingdom is the perfect educational entertainment choice for your children.">
+    <meta name="twitter:image" content="public/logo.png">
+
+    <!-- iOS Web App optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Rainbow Kingdom">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#3b82f6">
+
+    <!-- Icons -->
+    <link rel="icon" href="public/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/logo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Critical CSS for faster rendering -->
+    <style>
+        /* Critical CSS for Safari and immediate rendering */
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            height: 100%;
+            height: -webkit-fill-available;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            -webkit-overflow-scrolling: touch;
+            background: linear-gradient(135deg, #4065ac 0%, #5a7bc8 25%, #33d6f8 50%, #45e3ff 75%, #4065ac 100%);
+            background-attachment: fixed;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* For Parents page specific info-box styling */
+        .info-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 1000px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        /* Mobile responsive info-box styling */
+        @media (max-width: 768px) {
+            .info-box {
+                max-width: calc(100vw - 3rem);
+                margin: 1rem 1.5rem;
+                padding: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .info-box {
+                max-width: calc(100vw - 2rem);
+                margin: 1rem 1rem;
+                padding: 1rem;
+            }
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+
+        .info-box h1,
+        .info-box h2 {
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .info-box p,
+        .info-box .section-subtitle {
+            color: #333333;
+            text-shadow: none;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .mission-box {
+            background: rgba(51, 214, 248, 0.2);
+            border: 1px solid rgba(51, 214, 248, 0.3);
+        }
+
+        /* For Parents page specific section background opacity */
+        .hero-bg-full,
+        .section-bg {
+            opacity: 0.5 !important;
+        }
+
+        /* Enhanced Parents Section Styling - Educational Card Style */
+        .parents-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .parents-benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .benefit-card {
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            animation: benefitFadeIn 0.8s ease-out forwards;
+        }
+
+        .benefit-card:nth-child(1) { animation-delay: 0.1s; }
+        .benefit-card:nth-child(2) { animation-delay: 0.25s; }
+        .benefit-card:nth-child(3) { animation-delay: 0.4s; }
+        .benefit-card:nth-child(4) { animation-delay: 0.55s; }
+
+        @keyframes benefitFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .benefit-card-inner {
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            height: 100%;
+            min-height: 320px;
+            filter: brightness(1.15) saturate(1.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .benefit-card:hover .benefit-card-inner {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Theme-specific solid colored backgrounds */
+        .benefit-card.social-skills .benefit-card-inner {
+            background: linear-gradient(135deg, #dc3b4d, #b73240);
+        }
+
+        .benefit-card.problem-solving .benefit-card-inner {
+            background: linear-gradient(135deg, #f97316, #e6670f);
+        }
+
+        .benefit-card.emotional-intelligence .benefit-card-inner {
+            background: linear-gradient(135deg, #8b5cf6, #7c4df0);
+        }
+
+        .benefit-card.diversity .benefit-card-inner {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+
+        /* Content wrapper */
+        .benefit-content-wrapper {
+            position: relative;
+            padding: 2rem 2.5rem;
+            text-align: center;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        @media (min-width: 1024px) {
+            .benefit-content-wrapper {
+                padding: 2.5rem;
+            }
+        }
+
+        .benefit-icon-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .benefit-card:hover .benefit-icon-container {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .benefit-icon-box {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .benefit-icon-box {
+                width: 6rem;
+                height: 6rem;
+            }
+        }
+
+        .benefit-icon {
+            width: 2rem;
+            height: 2rem;
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @media (min-width: 1024px) {
+            .benefit-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+
+        .benefit-text-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .benefit-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (min-width: 1024px) {
+            .benefit-title {
+                font-size: 1.875rem;
+            }
+        }
+
+        .benefit-card:hover .benefit-title {
+            transform: scale(1.05);
+        }
+
+        .benefit-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 1rem;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (min-width: 1024px) {
+            .benefit-description {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Shine effect */
+        .benefit-shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        .benefit-card:hover .benefit-shine {
+            transform: translateX(100%);
+        }
+
+        /* Animated background pattern */
+        .benefit-bg-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            pointer-events: none;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+            animation: benefitPatternPulse 4s ease-in-out infinite;
+        }
+
+        .benefit-card:nth-child(1) .benefit-bg-pattern {
+            animation-delay: 0s;
+        }
+
+        .benefit-card:nth-child(2) .benefit-bg-pattern {
+            animation-delay: 0.5s;
+        }
+
+        .benefit-card:nth-child(3) .benefit-bg-pattern {
+            animation-delay: 1s;
+        }
+
+        .benefit-card:nth-child(4) .benefit-bg-pattern {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes benefitPatternPulse {
+            0%, 100% {
+                opacity: 0.1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.2;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Seamless blending for video section to newsletter section */
+        .video-section {
+            margin-bottom: -6rem !important;
+            position: relative !important;
+        }
+
+        /* Video section background blending - enhanced blur for smoother transition */
+        .video-background .section-bg {
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 5%, rgba(0, 0, 0, 0.3) 10%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.85) 25%, black 30%, black 65%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.7) 82%, rgba(0, 0, 0, 0.5) 87%, rgba(0, 0, 0, 0.3) 92%, rgba(0, 0, 0, 0.15) 96%, rgba(0, 0, 0, 0.05) 98%, transparent 100%) !important;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 5%, rgba(0, 0, 0, 0.3) 10%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.85) 25%, black 30%, black 65%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.7) 82%, rgba(0, 0, 0, 0.5) 87%, rgba(0, 0, 0, 0.3) 92%, rgba(0, 0, 0, 0.15) 96%, rgba(0, 0, 0, 0.05) 98%, transparent 100%) !important;
+        }
+
+        /* Ensure video content stays properly positioned */
+        .video-content {
+            position: relative !important;
+            z-index: 20 !important;
+        }
+    </style>
+</head>
+
+<body class="safari-fix">
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="container nav-content">
+            <!-- Desktop Navigation -->
+            <div class="nav-links">
+                <!-- Language Toggle -->
+                <button class="lang-toggle" onclick="toggleLanguage()"
+                    style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+                    <span class="globe-icon">🌍</span>
+                    <span id="lang-text">PL</span>
+                    <div class="flag-indicators">
+                        <span class="flag" id="flag-en">🇺🇸</span>
+                        <span class="flag" id="flag-pl">🇵🇱</span>
+                    </div>
+                </button>
+
+                <a href="index.html" class="nav-link" data-text="nav.home">Home</a>
+                <a href="characters.html" class="nav-link" data-text="nav.characters">Characters</a>
+                <a href="about.html" class="nav-link" data-text="nav.about">About</a>
+                <a href="parents.html" class="nav-link" data-text="nav.parents">For Parents</a>
+                <a href="index.html#newsletter" class="btn-red" data-text="common.stayUpdated"
+                    style="height: 2.5rem; display: flex; align-items: center;">Stay Updated</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()"
+        style="-webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+        <div class="hamburger"></div>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <button class="mobile-lang-toggle" onclick="toggleLanguage()"
+                style="-webkit-tap-highlight-color: transparent;">
+                <span class="globe-icon">🌍</span>
+                <span id="mobile-lang-text">Switch to Polish</span>
+                <span id="mobile-flag">🇵🇱</span>
+            </button>
+
+            <a href="index.html" class="mobile-nav-link" data-text="nav.home" onclick="closeMobileMenu()">Home</a>
+            <a href="characters.html" class="mobile-nav-link" data-text="nav.characters"
+                onclick="closeMobileMenu()">Characters</a>
+            <a href="about.html" class="mobile-nav-link" data-text="nav.about" onclick="closeMobileMenu()">About</a>
+            <a href="parents.html" class="mobile-nav-link" data-text="nav.parents" onclick="closeMobileMenu()">For
+                Parents</a>
+            <a href="index.html#newsletter" class="btn-red" data-text="common.stayUpdated" onclick="closeMobileMenu()"
+                style="width: 100%; text-align: center; margin-top: 1rem;">Stay Updated</a>
+        </div>
+    </div>
+
+    <!-- Combined Hero and Learning Section -->
+    <section class="video-section">
+        <div class="video-background">
+            <img src="public/background.png" alt="For Parents Section Background" class="section-bg">
+        </div>
+        <div class="container video-content">
+            <!-- Hero Content -->
+            <div style="text-align: center; padding: 2rem 0 1rem; margin-top: 4rem;">
+                <div class="info-box">
+                    <h2 class="section-title" data-text="parents.title">For Parents</h2>
+                    <p class="page-subtitle" data-text="parents.subtitle">Educational entertainment you can trust -
+                        discover why Rainbow Kingdom is perfect for your children's development and entertainment.</p>
+                </div>
+            </div>
+
+            <!-- What Your Child Will Learn Content - Enhanced with Visual Cards -->
+            <div class="info-box mission-box">
+                <h2 class="section-title" data-text="parents.learningTitle">What Your Child Will Learn</h2>
+                <p class="section-subtitle" data-text="parents.learningSubtitle">Rainbow Kingdom provides valuable
+                    educational content through engaging
+                    storytelling that children love and parents trust.</p>
+            </div>
+            
+            <!-- Enhanced Learning Benefits Grid -->
+            <div class="parents-benefits-grid">
+                <!-- Social Skills Card -->
+                <div class="benefit-card social-skills">
+                    <div class="benefit-card-inner">
+                        <div class="benefit-shine"></div>
+                        <div class="benefit-content-wrapper">
+                            <div class="benefit-icon-container">
+                                <div class="benefit-icon-box">
+                                    <i data-lucide="users" class="benefit-icon"></i>
+                                </div>
+                            </div>
+                            <div class="benefit-text-content">
+                                <h3 class="benefit-title" data-text="parents.socialSkills">Social Skills</h3>
+                                <p class="benefit-description" data-text="parents.socialSkillsDesc">Characters demonstrate how to make friends, share, take turns, and work together to solve problems. These social interactions provide excellent models for your child's own relationships.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Problem-Solving Card -->
+                <div class="benefit-card problem-solving">
+                    <div class="benefit-card-inner">
+                        <div class="benefit-shine"></div>
+                        <div class="benefit-content-wrapper">
+                            <div class="benefit-icon-container">
+                                <div class="benefit-icon-box">
+                                    <i data-lucide="puzzle" class="benefit-icon"></i>
+                                </div>
+                            </div>
+                            <div class="benefit-text-content">
+                                <h3 class="benefit-title" data-text="parents.problemSolving">Problem-Solving</h3>
+                                <p class="benefit-description" data-text="parents.problemSolvingDesc">Every episode presents challenges that characters overcome through creative thinking, persistence, and teamwork. Children learn that problems have solutions when approached with the right mindset.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Emotional Intelligence Card -->
+                <div class="benefit-card emotional-intelligence">
+                    <div class="benefit-card-inner">
+                        <div class="benefit-shine"></div>
+                        <div class="benefit-content-wrapper">
+                            <div class="benefit-icon-container">
+                                <div class="benefit-icon-box">
+                                    <i data-lucide="heart-handshake" class="benefit-icon"></i>
+                                </div>
+                            </div>
+                            <div class="benefit-text-content">
+                                <h3 class="benefit-title" data-text="parents.emotionalIntelligence">Emotional Intelligence</h3>
+                                <p class="benefit-description" data-text="parents.emotionalIntelligenceDesc">Characters express and manage emotions in healthy ways, teaching children to identify their own feelings and develop coping strategies for different situations.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-bg-pattern"></div>
+                    </div>
+                </div>
+
+                <!-- Diversity & Inclusion Card -->
+                <div class="benefit-card diversity">
+                    <div class="benefit-card-inner">
+                        <div class="benefit-shine"></div>
+                        <div class="benefit-content-wrapper">
+                            <div class="benefit-icon-container">
+                                <div class="benefit-icon-box">
+                                    <i data-lucide="rainbow" class="benefit-icon"></i>
+                                </div>
+                            </div>
+                            <div class="benefit-text-content">
+                                <h3 class="benefit-title" data-text="parents.diversity">Diversity & Inclusion</h3>
+                                <p class="benefit-description" data-text="parents.diversityDesc">Rainbow Kingdom celebrates differences and shows that everyone has unique strengths to contribute, fostering acceptance and appreciation for diversity.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-bg-pattern"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <!-- Background Image -->
+        <div class="newsletter-background">
+            <img src="public/bgsec5.png" alt="Newsletter Section Background" class="section-bg">
+        </div>
+        <!-- Top gradient to blend with education section -->
+        <div class="newsletter-top-gradient"></div>
+
+        <div class="container newsletter-content">
+            <!-- Newsletter Section -->
+            <div class="newsletter-wrapper">
+                <div class="newsletter-text-content">
+                    <h2 class="newsletter-title" data-text="newsletter.title">Never Miss an Episode</h2>
+                    <p class="newsletter-subtitle" data-text="newsletter.subtitle">Sign up for our newsletter and be the
+                        first to know when Rainbow Kingdom launches on your favorite platform!</p>
+
+                    <div class="newsletter-form-container">
+                        <form class="newsletter-form">
+                            <div class="newsletter-form-fields">
+                                <input type="email" class="newsletter-input" data-placeholder="newsletter.placeholder"
+                                    placeholder="Enter your email address" required>
+                                <button type="submit" class="newsletter-btn">
+                                    <span data-text="newsletter.button">Stay Updated</span>
+                                </button>
+                            </div>
+
+                            <div class="newsletter-privacy">
+                                <i data-lucide="check"></i>
+                                <span data-text="newsletter.noSpam">No spam, just magical updates!</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-background">
+            <div style="background-color: #33d6f8; width: 100%; height: 100%;"></div>
+        </div>
+        <div class="footer-content-simple">
+            <div class="footer-main-content">
+                <!-- Brand Section -->
+                <div class="footer-brand-section">
+                    <h4 class="footer-brand-title" data-text="footer.brandTitle">Rainbow Kingdom</h4>
+                    <p class="footer-description-simple" data-text="footer.description">A magical world where everyone is equal, and fun is always around the corner! Educational entertainment that children love and parents trust.</p>
+                    <div class="footer-logo-container">
+                        <div class="footer-logo-wrapper">
+                            <img src="public/logo.png" alt="Rainbow Kingdom Logo" class="footer-logo-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="footer-links-section">
+                    <h4 class="footer-section-title">Quick Links</h4>
+                    <nav class="footer-links-simple">
+                        <a href="about.html" class="footer-link" data-text="footer.aboutUs">About Us</a>
+                        <a href="parents.html" class="footer-link" data-text="footer.forParents">For Parents</a>
+                        <a href="characters.html" class="footer-link" data-text="footer.characters">Characters</a>
+                        <a href="index.html" class="footer-link">Home</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-contact-section">
+                    <h4 class="footer-section-title">Get in Touch</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i data-lucide="mail" class="footer-contact-icon"></i>
+                            <span>info@rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="globe" class="footer-contact-icon"></i>
+                            <span>www.rainbowkingdom.pl</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="heart" class="footer-contact-icon"></i>
+                            <span>Made with love for kids</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p class="copyright-text" data-text="footer.copyright">© 2025 Pot Of Gold Production. All rights reserved.</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61564509247140&sk=friends_likes" class="footer-social-link" aria-label="Facebook" target="_blank">
+                        <i data-lucide="facebook" class="footer-social-icon"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="TikTok">
+                        <i data-lucide="video" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/teczowekrolestwo.pl?igsh=MWRiaHF5aG54N3JlYw%3D%3D&utm_source=qr" class="footer-social-link" aria-label="Instagram" target="_blank">
+                        <i data-lucide="instagram" class="footer-social-icon"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@RainbowKingdom86" class="footer-social-link" aria-label="YouTube" target="_blank">
+                        <i data-lucide="youtube" class="footer-social-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+
+</html>
